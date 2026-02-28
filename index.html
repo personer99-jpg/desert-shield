@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Desert Shield Auto Paint — Professional mobile auto paint & body repair serving the High Desert. Minor repairs at your location, major collision work at our shop. Victorville, CA.">
+  <meta name="theme-color" content="#0a0e17">
+  <title>Desert Shield Auto Paint | Mobile Auto Paint & Body Repair | Victorville, CA</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- EmailJS SDK (loaded only if configured) -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+
+  <!-- Config (replace with real keys or load from env at build) -->
+  <script>
+    // Set your API keys here or inject at build/deploy time
+    window.GEMINI_API_KEY = '';          // Your Gemini API key
+    window.EMAILJS_SERVICE_ID = '';      // EmailJS service ID
+    window.EMAILJS_TEMPLATE_ID = '';     // EmailJS template ID
+    window.EMAILJS_PUBLIC_KEY = '';      // EmailJS public key
+  </script>
+</head>
+<body>
+
+  <!-- ========== NAVIGATION ========== -->
+  <nav class="navbar transparent" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <svg viewBox="0 0 40 44" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 2L4 12v20l16 10 16-10V12L20 2z" fill="none" stroke="#d4a84b" stroke-width="2"/>
+          <path d="M20 8l-10 6v12l10 6 10-6V14L20 8z" fill="#d4a84b" opacity="0.2"/>
+          <path d="M15 20l3 3 7-7" fill="none" stroke="#d4a84b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>
+          Desert Shield
+          <span class="logo-sub">Auto Paint</span>
+        </span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#comparison">Why Us</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#chat-section">AI Assistant</a>
+        <a href="#quote" class="nav-cta">Free Quote</a>
+      </div>
+
+      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <a href="#services">Services</a>
+    <a href="#comparison">Why Us</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#chat-section">AI Assistant</a>
+    <a href="#quote" class="btn btn-primary btn-sm">Free Quote</a>
+  </div>
+
+  <!-- ========== HERO SECTION ========== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <canvas id="particles-canvas"></canvas>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>
+        Serving the High Desert &bull; Victorville, CA
+      </div>
+
+      <h1>
+        <span class="accent">Desert Shield</span><br>
+        Auto Paint
+      </h1>
+
+      <p class="hero-tagline">
+        Professional auto paint &amp; body repair — mobile service for minor repairs, shop drop-off for major collision work. Serving the entire High Desert.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#quote" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+          Get Free Estimate
+        </a>
+        <a href="#chat-section" class="btn btn-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Ask Our AI
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="stat-value">15+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-value">100%</div>
+          <div class="stat-label">Color Match</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-value">5&#9733;</div>
+          <div class="stat-label">Customer Rated</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICES SECTION ========== -->
+  <section class="services section-padding" id="services">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">What We Do</span>
+        <h2>Our Services</h2>
+        <p>From mobile touch-ups at your location to full collision repair at our shop — we've got you covered.</p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Mobile Service -->
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <span class="service-tag">We Come To You</span>
+          <h3>Mobile Touch-Up &amp; Minor Repair</h3>
+          <p>Scratches, scuffs, bumper blending, small dents, and paint touch-ups — done at your home, office, or dealership lot. Convenient and fast.</p>
+        </div>
+
+        <!-- Shop Service -->
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <span class="service-tag">Shop Drop-Off</span>
+          <h3>In-Shop Collision &amp; Major Repair</h3>
+          <p>Full panel repaints, complete color changes, collision restoration, and frame-level body work. Drop off your vehicle for expert-level results.</p>
+        </div>
+
+        <!-- Dealership -->
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <span class="service-tag">On-Site at Your Lot</span>
+          <h3>Dealership Services</h3>
+          <p>Lot-ready paint repair and reconditioning right at your dealership. Keep your inventory looking showroom-fresh with on-site service.</p>
+        </div>
+
+        <!-- Insurance-Free -->
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <span class="service-tag">Save Money</span>
+          <h3>Insurance-Free Repair</h3>
+          <p>Skip the insurance hassle. Our repairs are often cheaper than your deductible — no rate increases, no paperwork, no claims on your record.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== COMPARISON SECTION ========== -->
+  <section class="comparison section-padding" id="comparison">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Smart Choice</span>
+        <h2>Us vs. Insurance</h2>
+        <p>See why more drivers are choosing direct repair over filing an insurance claim.</p>
+      </div>
+
+      <div class="comparison-grid reveal">
+        <!-- Desert Shield Column -->
+        <div class="comparison-col us">
+          <h3>Desert Shield</h3>
+
+          <div class="comparison-item">
+            <div class="check green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span>Often cheaper than your deductible</span>
+          </div>
+          <div class="comparison-item">
+            <div class="check green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span>No insurance rate increases</span>
+          </div>
+          <div class="comparison-item">
+            <div class="check green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span>Fast turnaround — days, not weeks</span>
+          </div>
+          <div class="comparison-item">
+            <div class="check green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span>Mobile service at your location</span>
+          </div>
+          <div class="comparison-item">
+            <div class="check green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span>Zero paperwork</span>
+          </div>
+          <div class="comparison-item">
+            <div class="check green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span>Direct communication with Ryan</span>
+          </div>
+        </div>
+
+        <!-- VS Divider -->
+        <div class="comparison-vs">
+          <span>VS</span>
+        </div>
+
+        <!-- Insurance Column -->
+        <div class="comparison-col them">
+          <h3>Insurance Route</h3>
+
+          <div class="comparison-item">
+            <div class="check red">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            <span>$500–$1,000+ deductible</span>
+          </div>
+          <div class="comparison-item">
+            <div class="check red">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            <span>Premium increases after claim</span>
+          </div>
+          <div class="comparison-item">
+            <div class="check red">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            <span>Weeks-long timelines</span>
+          </div>
+          <div class="comparison-item">
+            <div class="check red">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            <span>Their chosen shop, not yours</span>
+          </div>
+          <div class="comparison-item">
+            <div class="check red">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            <span>Mountains of paperwork</span>
+          </div>
+          <div class="comparison-item">
+            <div class="check red">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            <span>Claim on your record</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== HOW IT WORKS ========== -->
+  <section class="how-it-works section-padding" id="how-it-works">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Simple Process</span>
+        <h2>How It Works</h2>
+        <p>Four easy steps from damage to done.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card reveal">
+          <div class="step-number">1</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          </div>
+          <h3>Send Photos</h3>
+          <p>Upload photos of the damage through our website or AI assistant.</p>
+        </div>
+
+        <div class="step-card reveal">
+          <div class="step-number">2</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <h3>Get Your Estimate</h3>
+          <p>Receive a free quote — usually within hours, not days.</p>
+        </div>
+
+        <div class="step-card reveal">
+          <div class="step-number">3</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <h3>We Fix It</h3>
+          <p>Mobile service for minor repairs, shop drop-off for bigger jobs.</p>
+        </div>
+
+        <div class="step-card reveal">
+          <div class="step-number">4</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h3>Look Brand New</h3>
+          <p>100% color match guaranteed. Your vehicle looks factory-fresh.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== AI CHAT SECTION ========== -->
+  <section class="chat-section section-padding" id="chat-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Ask Anything</span>
+        <h2>AI Assistant</h2>
+        <p>Get instant answers about our services, pricing, and more. Upload photos of your damage for personalized guidance.</p>
+      </div>
+
+      <div class="chat-wrapper reveal">
+        <div class="chat-window">
+          <!-- Chat Header -->
+          <div class="chat-header">
+            <div class="chat-avatar">
+              <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <div class="chat-header-info">
+              <h4>Desert Shield Assistant</h4>
+              <div class="chat-status">
+                <span class="chat-status-dot"></span>
+                Online — Ask me anything
+              </div>
+            </div>
+          </div>
+
+          <!-- Messages -->
+          <div class="chat-messages" id="chat-messages"></div>
+
+          <!-- Typing Indicator -->
+          <div class="typing-indicator" id="typing-indicator">
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+          </div>
+
+          <!-- Quick Actions -->
+          <div class="chat-quick-actions">
+            <button class="quick-action-btn">Our Services</button>
+            <button class="quick-action-btn">Pricing Info</button>
+            <button class="quick-action-btn">Mobile Service</button>
+            <button class="quick-action-btn">Skip Insurance</button>
+          </div>
+
+          <!-- Upload Preview -->
+          <div class="chat-upload-preview" id="chat-upload-preview"></div>
+
+          <!-- Input Area -->
+          <div class="chat-input-area">
+            <button class="chat-upload-btn" id="chat-upload-btn" title="Upload photos">
+              <svg viewBox="0 0 24 24"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+            </button>
+            <input type="file" id="chat-upload-input" accept="image/jpeg,image/png" multiple hidden>
+            <div class="chat-input-wrapper">
+              <textarea id="chat-input" placeholder="Type your message..." rows="1"></textarea>
+            </div>
+            <button class="chat-send-btn" id="chat-send-btn" title="Send message">
+              <svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== QUOTE FORM SECTION ========== -->
+  <section class="quote-section section-padding" id="quote">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Get Started</span>
+        <h2>Request a Free Quote</h2>
+        <p>Upload photos of the damage and tell us about your vehicle. Ryan will get back to you with a quote — usually within hours.</p>
+      </div>
+
+      <div class="quote-wrapper reveal">
+        <div class="quote-form-container">
+          <!-- Success Message -->
+          <div class="form-success" id="form-success">
+            <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <h3>Quote Request Sent!</h3>
+            <p>Thanks! Ryan will review your request and get back to you soon — usually within a few hours.</p>
+          </div>
+
+          <!-- Form -->
+          <form id="quote-form" novalidate>
+            <div id="form-content" class="quote-form">
+              <div class="form-grid">
+                <!-- Name -->
+                <div class="form-group">
+                  <label for="form-name">Name <span class="required">*</span></label>
+                  <input type="text" id="form-name" placeholder="Your full name" required>
+                  <span class="form-error"></span>
+                </div>
+
+                <!-- Phone -->
+                <div class="form-group">
+                  <label for="form-phone">Phone <span class="required">*</span></label>
+                  <input type="tel" id="form-phone" placeholder="(760) 555-1234" required>
+                  <span class="form-error"></span>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                  <label for="form-email">Email</label>
+                  <input type="email" id="form-email" placeholder="your@email.com">
+                  <span class="form-error"></span>
+                </div>
+
+                <!-- Vehicle -->
+                <div class="form-group">
+                  <label for="form-vehicle">Vehicle Year/Make/Model <span class="required">*</span></label>
+                  <input type="text" id="form-vehicle" placeholder="e.g. 2021 Toyota Camry" required>
+                  <span class="form-error"></span>
+                </div>
+
+                <!-- Color -->
+                <div class="form-group">
+                  <label for="form-color">Vehicle Color</label>
+                  <input type="text" id="form-color" placeholder="e.g. Pearl White">
+                </div>
+
+                <!-- Service Type -->
+                <div class="form-group">
+                  <label for="form-service">Service Type <span class="required">*</span></label>
+                  <select id="form-service" required>
+                    <option value="">Select a service...</option>
+                    <option value="Mobile Touch-Up">Mobile Touch-Up</option>
+                    <option value="Scratch Repair">Scratch Repair</option>
+                    <option value="Bumper Repair">Bumper Repair</option>
+                    <option value="Shop Collision">Shop Collision Repair</option>
+                    <option value="Full Panel Repaint">Full Panel Repaint</option>
+                    <option value="Color Change">Color Change</option>
+                    <option value="Dealership">Dealership Service</option>
+                    <option value="Other">Other</option>
+                  </select>
+                  <span class="form-error"></span>
+                </div>
+
+                <!-- Description -->
+                <div class="form-group full-width">
+                  <label for="form-description">Describe the Damage</label>
+                  <textarea id="form-description" rows="4" placeholder="Tell us what happened — location of damage, size, how it occurred, etc."></textarea>
+                </div>
+
+                <!-- Image Upload -->
+                <div class="form-group full-width">
+                  <label>Photos of Damage</label>
+                  <div class="upload-zone" id="upload-zone">
+                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    <p>Drag &amp; drop photos here, or tap to browse</p>
+                    <span class="upload-hint">JPG or PNG, up to 10MB each &bull; Up to 5 photos</span>
+                  </div>
+                  <input type="file" id="form-file-input" accept="image/jpeg,image/png" multiple hidden>
+                  <div class="image-previews" id="image-previews"></div>
+                </div>
+              </div>
+
+              <div class="form-submit-area">
+                <button type="submit" class="btn btn-primary" id="form-submit-btn">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                  Submit Quote Request
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT SECTION ========== -->
+  <section class="about section-padding" id="about">
+    <div class="container">
+      <div class="about-content">
+        <div class="about-text reveal">
+          <h2>Meet <span class="accent">Ryan Graham</span></h2>
+          <p>
+            With over 15 years of hands-on experience working for several of the largest collision and auto paint companies in the industry, Ryan Graham is bringing his expertise directly to you.
+          </p>
+          <p>
+            Desert Shield Auto Paint offers the convenience of mobile service for minor repairs — scratches, scuffs, bumper blending, and touch-ups done right at your location. For bigger jobs like collision damage, full repaints, and color changes, vehicles are dropped off at our shop for expert-level results.
+          </p>
+          <p>
+            Based in Victorville and proudly serving the entire High Desert region of Southern California.
+          </p>
+        </div>
+
+        <div class="about-stats reveal">
+          <div class="about-stat">
+            <div class="stat-num">15+</div>
+            <div class="stat-text">Years Experience</div>
+          </div>
+          <div class="about-stat">
+            <div class="stat-num">1,000+</div>
+            <div class="stat-text">Vehicles Restored</div>
+          </div>
+          <div class="about-stat">
+            <div class="stat-num">100%</div>
+            <div class="stat-text">Color Match Guarantee</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICE AREA SECTION ========== -->
+  <section class="service-area section-padding" id="service-area">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Coverage</span>
+        <h2>Service Area</h2>
+        <p>Proudly serving the High Desert and surrounding communities.</p>
+      </div>
+
+      <div class="area-grid reveal">
+        <div class="area-card">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Victorville</span>
+        </div>
+        <div class="area-card">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Hesperia</span>
+        </div>
+        <div class="area-card">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Apple Valley</span>
+        </div>
+        <div class="area-card">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Adelanto</span>
+        </div>
+        <div class="area-card">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Lucerne Valley</span>
+        </div>
+        <div class="area-card">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Phelan</span>
+        </div>
+        <div class="area-card">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Oak Hills</span>
+        </div>
+        <div class="area-card">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Spring Valley Lake</span>
+        </div>
+        <div class="area-card">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Barstow</span>
+        </div>
+        <div class="area-card">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Oro Grande</span>
+        </div>
+        <div class="area-card">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Pinon Hills</span>
+        </div>
+        <div class="area-card">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Wrightwood</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#hero" class="nav-logo">
+            <svg viewBox="0 0 40 44" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 2L4 12v20l16 10 16-10V12L20 2z" fill="none" stroke="#d4a84b" stroke-width="2"/>
+              <path d="M20 8l-10 6v12l10 6 10-6V14L20 8z" fill="#d4a84b" opacity="0.2"/>
+              <path d="M15 20l3 3 7-7" fill="none" stroke="#d4a84b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>
+              Desert Shield
+              <span class="logo-sub">Auto Paint</span>
+            </span>
+          </a>
+          <p>Professional auto paint &amp; body repair. Mobile service for minor repairs, shop drop-off for major collision work. Serving the High Desert.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Quick Links</h4>
+          <div class="footer-links">
+            <a href="#services">Services</a>
+            <a href="#comparison">Why Us</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#chat-section">AI Assistant</a>
+            <a href="#quote">Free Quote</a>
+            <a href="#about">About</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Contact</h4>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            (760) 555-0199
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            info@desertshieldautopaint.com
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Mon–Sat 8:00 AM – 6:00 PM
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Victorville, CA
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        &copy; 2026 Desert Shield Auto Paint. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/form.js"></script>
+  <script src="js/chat.js"></script>
+</body>
+</html>
