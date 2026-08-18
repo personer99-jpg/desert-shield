@@ -1,0 +1,8 @@
+item,result
+N,200000
+support_size,18120
+prime_power_count_leq_N,18120
+support_equals_prime_powers,True
+value_on_p^k,log p (max dev 1.55e-15)
+mixed_pq_survive,no: B(pq)=0 to machine precision
+identification,B = von Mangoldt Lambda; Dirichlet conv identity log = 1*Lambda

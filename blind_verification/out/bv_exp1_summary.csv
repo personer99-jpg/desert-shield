@@ -1,0 +1,8 @@
+item,result
+composition_law,"T_m o T_n = T_{mn} (exact, 2000 random rational trials)"
+indecomposables_count_upto_1000,168
+indecomposables_first15,2 3 5 7 11 13 17 19 23 29 31 37 41 43 47
+fix_count,"Fix(T_n^r) = n^r - 1 (verified directly for small n,r)"
+entropy,h_n = log n (max dev 2.28e-14)
+commutator,"[D,U_n] = (log n) U_n exact"
+thermal_trace,Tr e^{-beta D} = zeta(beta)
