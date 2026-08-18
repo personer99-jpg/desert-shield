@@ -1,0 +1,70 @@
+2cycle ends=() ranks=(1, 1): variety hits=60/60; max T on {R=0}: T=2.224e-09 (R=1.1e-17)
+figure8 ends=() ranks=(1,): variety hits=60/60; max T on {R=0}: T=2.223e-09 (R=1.1e-17)
+figure8 ends=() ranks=(2,): variety hits=60/60; max T on {R=0}: T=2.223e-09 (R=1.1e-17)
+figure8 ends=() ranks=(3,): variety hits=60/60; max T on {R=0}: T=2.223e-09 (R=1.1e-17)
+theta ends=() ranks=(1, 1): variety hits=23/60; max T on {R=0}: T=5.562e-10 (R=2.8e-18)
+theta ends=() ranks=(1, 2): variety hits=30/60; max T on {R=0}: T=5.562e-10 (R=2.8e-18)
+theta ends=() ranks=(2, 1): variety hits=18/60; max T on {R=0}: T=5.557e-10 (R=2.8e-18)
+theta ends=() ranks=(2, 2): variety hits=32/60; max T on {R=0}: T=5.573e-10 (R=2.8e-18)
+dumbbell ends=() ranks=(1, 1): variety hits=35/60; max T on {R=0}: T=4.943e-10 (R=2.5e-18)
+dumbbell ends=() ranks=(1, 2): variety hits=41/60; max T on {R=0}: T=4.937e-10 (R=2.5e-18)
+dumbbell ends=() ranks=(2, 1): variety hits=37/60; max T on {R=0}: T=4.940e-10 (R=2.5e-18)
+dumbbell ends=() ranks=(2, 2): variety hits=40/60; max T on {R=0}: T=4.938e-10 (R=2.5e-18)
+triangle ends=() ranks=(1, 1, 1): variety hits=27/60; max T on {R=0}: T=5.563e-10 (R=2.8e-18)
+lasso ends=(1,) ranks=(1,): variety hits=60/60; max T on {R=0}: T=2.223e-09 (R=1.1e-17)
+lasso ends=(1,) ranks=(2,): variety hits=60/60; max T on {R=0}: T=2.227e-09 (R=1.1e-17)
+lasso ends=(-1,) ranks=(1,): variety hits=60/60; max T on {R=0}: T=2.223e-09 (R=1.1e-17)
+lasso ends=(-1,) ranks=(2,): variety hits=60/60; max T on {R=0}: T=2.223e-09 (R=1.1e-17)
+3star ends=(1, 1, 1) ranks=(1,): variety hits=60/60; max T on {R=0}: T=4.949e-10 (R=2.5e-18)
+3star ends=(1, 1, 1) ranks=(2,): variety hits=60/60; max T on {R=0}: T=4.947e-10 (R=2.5e-18)
+3star ends=(1, 1, -1) ranks=(1,): variety hits=60/60; max T on {R=0}: T=4.949e-10 (R=2.5e-18)
+3star ends=(1, 1, -1) ranks=(2,): variety hits=60/60; max T on {R=0}: T=4.954e-10 (R=2.5e-18)
+3star ends=(1, -1, 1) ranks=(1,): variety hits=60/60; max T on {R=0}: T=4.949e-10 (R=2.5e-18)
+3star ends=(1, -1, 1) ranks=(2,): variety hits=60/60; max T on {R=0}: T=4.948e-10 (R=2.5e-18)
+3star ends=(1, -1, -1) ranks=(1,): variety hits=60/60; max T on {R=0}: T=4.951e-10 (R=2.5e-18)
+3star ends=(1, -1, -1) ranks=(2,): variety hits=60/60; max T on {R=0}: T=4.947e-10 (R=2.5e-18)
+3star ends=(-1, 1, 1) ranks=(1,): variety hits=60/60; max T on {R=0}: T=4.944e-10 (R=2.5e-18)
+3star ends=(-1, 1, 1) ranks=(2,): variety hits=60/60; max T on {R=0}: T=4.946e-10 (R=2.5e-18)
+3star ends=(-1, 1, -1) ranks=(1,): variety hits=60/60; max T on {R=0}: T=4.948e-10 (R=2.5e-18)
+3star ends=(-1, 1, -1) ranks=(2,): variety hits=60/60; max T on {R=0}: T=4.947e-10 (R=2.5e-18)
+3star ends=(-1, -1, 1) ranks=(1,): variety hits=60/60; max T on {R=0}: T=4.952e-10 (R=2.5e-18)
+3star ends=(-1, -1, 1) ranks=(2,): variety hits=60/60; max T on {R=0}: T=4.952e-10 (R=2.5e-18)
+3star ends=(-1, -1, -1) ranks=(1,): variety hits=60/60; max T on {R=0}: T=4.942e-10 (R=2.5e-18)
+3star ends=(-1, -1, -1) ranks=(2,): variety hits=60/60; max T on {R=0}: T=4.948e-10 (R=2.5e-18)
+
+==== summary (candidate counterexamples have R ~ 0 with T >= 0.05) ====
+  CANDIDATE: 2cycle ends=() ranks=(1, 1) R=1.113e-17 T=0.000
+  CANDIDATE: figure8 ends=() ranks=(1,) R=1.111e-17 T=0.000
+  CANDIDATE: figure8 ends=() ranks=(2,) R=1.112e-17 T=0.000
+  CANDIDATE: figure8 ends=() ranks=(3,) R=1.111e-17 T=0.000
+  CANDIDATE: theta ends=() ranks=(1, 1) R=2.785e-18 T=0.000
+  CANDIDATE: theta ends=() ranks=(1, 2) R=2.784e-18 T=0.000
+  CANDIDATE: theta ends=() ranks=(2, 1) R=2.780e-18 T=0.000
+  CANDIDATE: theta ends=() ranks=(2, 2) R=2.795e-18 T=0.000
+  CANDIDATE: dumbbell ends=() ranks=(1, 1) R=2.473e-18 T=0.000
+  CANDIDATE: dumbbell ends=() ranks=(1, 2) R=2.467e-18 T=0.000
+  CANDIDATE: dumbbell ends=() ranks=(2, 1) R=2.471e-18 T=0.000
+  CANDIDATE: dumbbell ends=() ranks=(2, 2) R=2.469e-18 T=0.000
+  CANDIDATE: triangle ends=() ranks=(1, 1, 1) R=2.786e-18 T=0.000
+  CANDIDATE: lasso ends=(1,) ranks=(1,) R=1.112e-17 T=0.000
+  CANDIDATE: lasso ends=(1,) ranks=(2,) R=1.116e-17 T=0.000
+  CANDIDATE: lasso ends=(-1,) ranks=(1,) R=1.112e-17 T=0.000
+  CANDIDATE: lasso ends=(-1,) ranks=(2,) R=1.112e-17 T=0.000
+  CANDIDATE: 3star ends=(1, 1, 1) ranks=(1,) R=2.480e-18 T=0.000
+  CANDIDATE: 3star ends=(1, 1, 1) ranks=(2,) R=2.477e-18 T=0.000
+  CANDIDATE: 3star ends=(1, 1, -1) ranks=(1,) R=2.480e-18 T=0.000
+  CANDIDATE: 3star ends=(1, 1, -1) ranks=(2,) R=2.485e-18 T=0.000
+  CANDIDATE: 3star ends=(1, -1, 1) ranks=(1,) R=2.480e-18 T=0.000
+  CANDIDATE: 3star ends=(1, -1, 1) ranks=(2,) R=2.479e-18 T=0.000
+  CANDIDATE: 3star ends=(1, -1, -1) ranks=(1,) R=2.482e-18 T=0.000
+  CANDIDATE: 3star ends=(1, -1, -1) ranks=(2,) R=2.478e-18 T=0.000
+  CANDIDATE: 3star ends=(-1, 1, 1) ranks=(1,) R=2.474e-18 T=0.000
+  CANDIDATE: 3star ends=(-1, 1, 1) ranks=(2,) R=2.476e-18 T=0.000
+  CANDIDATE: 3star ends=(-1, 1, -1) ranks=(1,) R=2.479e-18 T=0.000
+  CANDIDATE: 3star ends=(-1, 1, -1) ranks=(2,) R=2.478e-18 T=0.000
+  CANDIDATE: 3star ends=(-1, -1, 1) ranks=(1,) R=2.483e-18 T=0.000
+  CANDIDATE: 3star ends=(-1, -1, 1) ranks=(2,) R=2.483e-18 T=0.000
+  CANDIDATE: 3star ends=(-1, -1, -1) ranks=(1,) R=2.473e-18 T=0.000
+  CANDIDATE: 3star ends=(-1, -1, -1) ranks=(2,) R=2.479e-18 T=0.000
+
+[exited with code 0]
