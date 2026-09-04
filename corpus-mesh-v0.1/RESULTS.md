@@ -2,6 +2,13 @@
 
 These are **synthetic harness-validation results**, not evidence of improved frontier AI capability.
 
+> **Update 2026-09-04:** the real-model matched experiment has now been run —
+> see **[RESULTS-CM-E003.md](RESULTS-CM-E003.md)**. Verdict: no meaningful
+> improvement over a plain worker + blind-verifier team at the tested sample
+> size; independent verification is the dominant mechanism; one mesh
+> mechanism (verified retries) helped, one (arbitration tie-breaks)
+> measurably hurt. The synthetic results below are preserved unchanged.
+
 ## Run 1 — universal adversary (rejected)
 
 500 seeded trials per horizon; worker simulated error 1.5%, verifier error 0.5%, adversary error 1.0%.

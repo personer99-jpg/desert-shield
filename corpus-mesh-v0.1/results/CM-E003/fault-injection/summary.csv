@@ -1,0 +1,5 @@
+architecture,horizon,runs,success_rate,success_ci_low,success_ci_high,step_escape_rate,step_escape_ci_low,step_escape_ci_high,avg_errors_introduced,avg_errors_detected,avg_errors_recovered,avg_escaped_errors,avg_model_calls,avg_input_tokens,avg_output_tokens,avg_cost_usd,avg_wall_seconds,avg_recovery_latency_s,cost_per_success_usd
+corpus_mesh,12,8,0.625,0.3057,0.8632,0.05208,0.02245,0.11619,3.875,3.625,3.25,0.625,31.88,15912.4,6251.8,0.08019,169.2,6.31,0.1283
+reflection,12,8,0.375,0.1368,0.6943,0.10417,0.05757,0.18122,4,3.75,3.5,1.25,24,12577.4,4799.4,0.06203,130.4,0.0,0.16542
+single,12,8,0.0,0.0,0.3244,0.36458,0.27524,0.46435,4.375,0,0,4.375,12,5947.9,2140.8,0.02904,64.3,0.0,
+static_team,12,8,0.375,0.1368,0.6943,0.07292,0.03577,0.14293,3.875,3.75,3,0.875,27.88,13941.8,5584.9,0.07076,151.7,3.38,0.18869

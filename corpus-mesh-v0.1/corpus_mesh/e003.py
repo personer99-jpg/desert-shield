@@ -830,6 +830,40 @@ def calibrate(adapter, out_path: Path, samples: int, seed: int, ops: Sequence[st
     out_path.write_text(json.dumps(report, indent=2))
 
 
+class OpenAICompatShim:
+    """Adapts the OpenAI-compatible HTTP adapter to the CM-E003 call contract,
+    so the same experiment can run against local/self-hosted models."""
+
+    def __init__(self, *, endpoint: str, model: str) -> None:
+        import os
+
+        from .claude_cli import extract_value
+        from .model_adapter import OpenAICompatibleHTTPAdapter
+
+        api_key = os.environ.get("CM_MODEL_API_KEY", "")
+        if not api_key:
+            raise SystemExit("--endpoint requires CM_MODEL_API_KEY (any non-empty string for most local servers)")
+        self._inner = OpenAICompatibleHTTPAdapter(endpoint=endpoint, api_key=api_key, model=model)
+        self._extract = extract_value
+        self.model = model
+        self.name = self._inner.name
+
+    def invoke(self, *, system: str, user: str, metadata: Optional[Dict[str, Any]] = None):
+        from .claude_cli import CallResult
+
+        r = self._inner.invoke(system=system, user=user)
+        value = r.structured.get("value") if isinstance(r.structured.get("value"), int) else None
+        if value is None:
+            value = self._extract(r.content)
+        return CallResult(
+            text=r.content, value=value,
+            input_tokens=r.input_tokens, output_tokens=r.output_tokens,
+            cache_read_tokens=0, cache_creation_tokens=0,
+            cost_usd=r.cost_usd, latency_seconds=r.latency_seconds,
+            model=self.model, infra_retries=0, parse_ok=value is not None,
+        )
+
+
 # ---------------------------------------------------------------------------
 # CLI
 # ---------------------------------------------------------------------------
@@ -841,6 +875,13 @@ def main() -> None:
     def _common(sp):
         sp.add_argument("--model", default="claude-haiku-4-5-20251001")
         sp.add_argument("--claude-bin", default="claude")
+        sp.add_argument(
+            "--endpoint",
+            default=None,
+            help="OpenAI-compatible chat-completions URL (e.g. a local vLLM/"
+                 "Ollama server). When set, uses CM_MODEL_API_KEY instead of "
+                 "the Claude CLI.",
+        )
 
     c = sub.add_parser("calibrate", help="measure raw per-op error rates")
     _common(c)
@@ -883,8 +924,11 @@ def main() -> None:
         write_analysis(args.out, rows)
         return
 
-    from .claude_cli import ClaudeCLIAdapter
-    adapter = ClaudeCLIAdapter(model=args.model, claude_bin=args.claude_bin)
+    if args.endpoint:
+        adapter = OpenAICompatShim(endpoint=args.endpoint, model=args.model)
+    else:
+        from .claude_cli import ClaudeCLIAdapter
+        adapter = ClaudeCLIAdapter(model=args.model, claude_bin=args.claude_bin)
 
     if args.cmd == "calibrate":
         calibrate(adapter, args.out, args.samples, args.seed, args.ops)

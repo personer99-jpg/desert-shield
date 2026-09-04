@@ -1,0 +1,91 @@
+{
+  "detection_rate": {
+    "corpus_mesh": {
+      "errors": 31,
+      "challenged": 29,
+      "rate": 0.935
+    },
+    "reflection": {
+      "errors": 32,
+      "challenged": 30,
+      "rate": 0.938
+    },
+    "single": {
+      "errors": 35,
+      "challenged": 0,
+      "rate": 0.0
+    },
+    "static_team": {
+      "errors": 31,
+      "challenged": 30,
+      "rate": 0.968
+    }
+  },
+  "recovery_rate": {
+    "corpus_mesh": {
+      "detected": 29,
+      "repaired": 26,
+      "rate": 0.897
+    },
+    "reflection": {
+      "detected": 30,
+      "repaired": 28,
+      "rate": 0.933
+    },
+    "static_team": {
+      "detected": 30,
+      "repaired": 24,
+      "rate": 0.8
+    }
+  },
+  "escape_taxonomy": {
+    "corpus_mesh": {
+      "challenged_but_bad_accept": 3,
+      "correlated_agreement_on_wrong": 2
+    },
+    "reflection": {
+      "challenged_but_bad_accept": 8,
+      "unflagged_other": 2
+    },
+    "single": {
+      "unflagged_other": 35
+    },
+    "static_team": {
+      "challenged_but_bad_accept": 6,
+      "correlated_agreement_on_wrong": 1
+    }
+  },
+  "mesh_mechanisms": {
+    "audits": 3,
+    "audit_catches": 0,
+    "challenges": 30,
+    "primary_switches": 14,
+    "arb_retry_verified": 24,
+    "arb_majority": 6
+  },
+  "arbitration_outcomes": {
+    "majority": {
+      "total": 6,
+      "accepted_wrong": 2
+    },
+    "retry_verified": {
+      "total": 24,
+      "accepted_wrong": 1
+    }
+  },
+  "paired_mesh_vs_static": {
+    "pairs": 8,
+    "success_wins": 3,
+    "success_losses": 1,
+    "success_ties": 4,
+    "escape_better": 3,
+    "escape_worse": 2,
+    "escape_equal": 3,
+    "pooled_step_escapes": {
+      "mesh": 5,
+      "static": 7,
+      "steps_per_arch": 96
+    },
+    "two_proportion_z": -0.596
+  }
+}
