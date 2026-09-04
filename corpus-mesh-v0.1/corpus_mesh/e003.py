@@ -754,7 +754,7 @@ def run_experiment(
     cfg_path = out_dir / "config.json"
     if cfg_path.exists():
         prior = json.loads(cfg_path.read_text())
-        for key in ("model", "verifier_model", "seed_base", "op_mix", "audit_rate", "n_faults"):
+        for key in ("model", "verifier_model", "verifier_adapter", "seed_base", "op_mix", "audit_rate", "n_faults"):
             if prior.get(key) != config[key]:
                 raise SystemExit(
                     f"resume mismatch in {cfg_path}: {key} was {prior.get(key)!r}, now {config[key]!r}. "
@@ -921,17 +921,35 @@ class OpenAICompatShim:
 
         api_key = os.environ.get("CM_MODEL_API_KEY", "")
         if not api_key:
-            raise SystemExit("--endpoint requires CM_MODEL_API_KEY (any non-empty string for most local servers)")
+            raise SystemExit(
+                "an OpenAI-compatible endpoint requires CM_MODEL_API_KEY "
+                "(any non-empty string for most local servers)"
+            )
         self._inner = OpenAICompatibleHTTPAdapter(endpoint=endpoint, api_key=api_key, model=model)
         self._extract = extract_value
         self.model = model
         self.name = self._inner.name
 
     def invoke(self, *, system: str, user: str, metadata: Optional[Dict[str, Any]] = None):
+        import time as _time
+
         from .claude_cli import CallResult
 
-        r = self._inner.invoke(system=system, user=user)
-        value = r.structured.get("value") if isinstance(r.structured.get("value"), int) else None
+        r = None
+        last_exc: Optional[Exception] = None
+        retries = 0
+        for attempt in range(3):
+            try:
+                r = self._inner.invoke(system=system, user=user)
+                retries = attempt
+                break
+            except Exception as exc:  # noqa: BLE001 - local servers hiccup transiently
+                last_exc = exc
+                _time.sleep(2 ** attempt)
+        if r is None:
+            raise RuntimeError(f"endpoint call failed after 3 attempts: {last_exc}") from last_exc
+        sv = r.structured.get("value")
+        value = sv if isinstance(sv, int) and not isinstance(sv, bool) else None
         if value is None:
             value = self._extract(r.content)
         return CallResult(
@@ -939,7 +957,7 @@ class OpenAICompatShim:
             input_tokens=r.input_tokens, output_tokens=r.output_tokens,
             cache_read_tokens=0, cache_creation_tokens=0,
             cost_usd=r.cost_usd, latency_seconds=r.latency_seconds,
-            model=self.model, infra_retries=0, parse_ok=value is not None,
+            model=self.model, infra_retries=retries, parse_ok=value is not None,
         )
 
 
@@ -1024,8 +1042,10 @@ def main() -> None:
     elif args.cmd == "run":
         verifier_adapter = None
         if args.verifier_endpoint:
+            if not args.verifier_model:
+                p.error("--verifier-endpoint requires --verifier-model (the endpoint's model name)")
             verifier_adapter = OpenAICompatShim(
-                endpoint=args.verifier_endpoint, model=args.verifier_model or args.model,
+                endpoint=args.verifier_endpoint, model=args.verifier_model,
             )
         elif args.verifier_model:
             from .claude_cli import ClaudeCLIAdapter

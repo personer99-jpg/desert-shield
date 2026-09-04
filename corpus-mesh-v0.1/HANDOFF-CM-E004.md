@@ -2,8 +2,10 @@
 
 **Audience:** Claude Code running on the researcher's desktop (with a local
 GPU). Everything needed is in this repo on this branch. Read this file fully,
-then execute top to bottom. Total budget cap for the whole experiment: **$25
-of Claude usage** (the local model is free). Do not exceed it.
+then execute top to bottom. Total budget for the whole experiment: **$25 of
+Claude usage** (the local model is free). The per-command `--budget-cap-usd`
+flags below sum to $24 and are the mechanical enforcement — do not raise any
+of them.
 
 ## Why this experiment (context from CM-E003)
 
@@ -45,11 +47,12 @@ cd corpus-mesh-v0.1
 python3 -m pytest -q            # all tests must pass before spending anything
 ```
 
-Local verifier model: any OpenAI-compatible server works. With Ollama:
+Local verifier model: any OpenAI-compatible server works. With Ollama (if the
+Ollama desktop app is running, the server is already up — skip `serve`):
 
 ```bash
-ollama pull qwen2.5:14b-instruct   # good arithmetic per size; adjust to VRAM
-ollama serve &                      # exposes http://localhost:11434
+ollama serve &                      # exposes http://localhost:11434 (skip if already running)
+ollama pull qwen2.5:14b-instruct    # good arithmetic per size; adjust to VRAM
 export CM_MODEL_API_KEY=local       # any non-empty string
 ```
 
@@ -127,14 +130,20 @@ python3 -m corpus_mesh.e003_deep --out results/CM-E004/main-same
 python3 -m corpus_mesh.e003_deep --out results/CM-E004/main-hetero
 ```
 
-Primary comparison: `escape_taxonomy.verified_team.correlated_agreement_on_wrong`
-in the two `deep_analysis.json` files (CM-E003 reference point: ~7 per 680
-steps with the richer op mix; expect more with the mul-only mix). Report it
-with a Fisher exact test. Secondary: pooled step-escape rate, decay lambda
-(`decay.json`), detection/recovery rates, cost per success, and verifier-side
-quality (how often the local verifier challenged a *correct* worker value —
-false challenges cost calls; count `challenged` steps where the worker was
-right, available in `deep_analysis.json` recovery/detection tables).
+Primary comparison: `correlated_agreement_escapes.verified_team` in the two
+`deep_analysis.json` files — this key is always emitted (0 default), so a
+missing effect reads as 0, not as an absent key. CM-E003 reference point: 7
+per 680 steps with the richer op mix; expect more with the mul-only mix.
+Report it with a Fisher exact test. Secondary: pooled step-escape rate, decay
+lambda (`decay.json`), detection/recovery rates, cost per success, and
+`false_challenges` (also emitted directly — how often the verifier challenged
+a *correct* worker value; a weak local verifier shows up here first as wasted
+recovery calls).
+
+Design property to keep in mind when interpreting: the escalation vote pools
+three verifier-model samples against two worker-model samples, deliberately
+verifier-favoring. In the heterogeneous arm this weights arbitration toward
+the local model; kill criterion 2 is the check on that trade.
 
 ## Step 4 — Report and commit
 

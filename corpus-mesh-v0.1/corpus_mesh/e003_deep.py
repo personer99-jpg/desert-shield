@@ -33,10 +33,14 @@ def analyze(out_dir: Path) -> dict:
     rec = collections.defaultdict(lambda: [0, 0])
     tax = collections.defaultdict(collections.Counter)
     mesh_mech = collections.Counter()
-    arb_outcomes = collections.defaultdict(collections.Counter)
+    arb_outcomes = collections.defaultdict(lambda: collections.defaultdict(collections.Counter))
+    false_challenges = collections.defaultdict(int)
+    correlated_escapes = collections.defaultdict(int)
+    archs_seen = set()
 
     for lg in logs:
         arch = lg["architecture"]
+        archs_seen.add(arch)
         chain = make_chain(lg["horizon"], lg["chain_seed"], mix)
         cur = chain.start
         for op, s in zip(chain.ops, lg["steps"]):
@@ -46,14 +50,16 @@ def analyze(out_dir: Path) -> dict:
                 det[arch][0] += 1
                 if s["challenged"]:
                     det[arch][1] += 1
+            if s["challenged"] and not wrong:
+                false_challenges[arch] += 1
             if s["challenged"] and wrong:
                 rec[arch][0] += 1
                 if s["accepted"] == truth:
                     rec[arch][1] += 1
             if s.get("arbitration"):
-                arb_outcomes[s["arbitration"]]["total"] += 1
+                arb_outcomes[arch][s["arbitration"]]["total"] += 1
                 if s["accepted"] != truth:
-                    arb_outcomes[s["arbitration"]]["accepted_wrong"] += 1
+                    arb_outcomes[arch][s["arbitration"]]["accepted_wrong"] += 1
             if s["accepted"] != truth:
                 if s["challenged"]:
                     tax[arch]["challenged_but_bad_accept"] += 1
@@ -61,6 +67,7 @@ def analyze(out_dir: Path) -> dict:
                     vvals = [c["value"] for c in s["calls"] if c["role"] == "verifier"]
                     if arch in ("static_team", "corpus_mesh", "verified_team") and vvals and vvals[0] == s["worker_value"]:
                         tax[arch]["correlated_agreement_on_wrong"] += 1
+                        correlated_escapes[arch] += 1
                     else:
                         tax[arch]["unflagged_other"] += 1
                 else:
@@ -94,8 +101,15 @@ def analyze(out_dir: Path) -> dict:
             for a, d in sorted(rec.items())
         },
         "escape_taxonomy": {a: dict(c) for a, c in sorted(tax.items())},
+        # CM-E004 primary endpoint — always present per architecture, 0 default.
+        "correlated_agreement_escapes": {a: correlated_escapes.get(a, 0) for a in sorted(archs_seen)},
+        # CM-E004 secondary endpoint: challenged steps where the worker was right.
+        "false_challenges": {a: false_challenges.get(a, 0) for a in sorted(archs_seen)},
         "mesh_mechanisms": dict(mesh_mech),
-        "arbitration_outcomes": {a: dict(c) for a, c in sorted(arb_outcomes.items())},
+        "arbitration_outcomes": {
+            a: {label: dict(c) for label, c in sorted(labels.items())}
+            for a, labels in sorted(arb_outcomes.items())
+        },
     }
 
     archs = {r["architecture"] for r in rows}

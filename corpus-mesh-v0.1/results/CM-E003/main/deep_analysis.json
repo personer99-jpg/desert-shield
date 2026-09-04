@@ -55,6 +55,18 @@
       "challenged_but_bad_accept": 29
     }
   },
+  "correlated_agreement_escapes": {
+    "corpus_mesh": 7,
+    "reflection": 0,
+    "single": 0,
+    "static_team": 7
+  },
+  "false_challenges": {
+    "corpus_mesh": 29,
+    "reflection": 24,
+    "single": 0,
+    "static_team": 16
+  },
   "mesh_mechanisms": {
     "audits": 72,
     "audit_catches": 4,
@@ -65,17 +77,19 @@
     "arb_fallback": 5
   },
   "arbitration_outcomes": {
-    "fallback": {
-      "total": 5,
-      "accepted_wrong": 4
-    },
-    "majority": {
-      "total": 32,
-      "accepted_wrong": 13
-    },
-    "retry_verified": {
-      "total": 53,
-      "accepted_wrong": 5
+    "corpus_mesh": {
+      "fallback": {
+        "total": 5,
+        "accepted_wrong": 4
+      },
+      "majority": {
+        "total": 32,
+        "accepted_wrong": 13
+      },
+      "retry_verified": {
+        "total": 53,
+        "accepted_wrong": 5
+      }
     }
   },
   "paired_mesh_vs_static": {

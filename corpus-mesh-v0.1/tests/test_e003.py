@@ -158,7 +158,7 @@ def test_no_hidden_oracle_when_verifier_shares_the_error():
                 return op.apply(current) + 1  # consistently wrong, same value
         raise AssertionError("unmatched prompt")
 
-    for arch in ("static_team", "corpus_mesh", "reflection", "single"):
+    for arch in ("static_team", "corpus_mesh", "verified_team", "reflection", "single"):
         adapter = MockAdapter(wrong_script)
         steps, _ = run_one(arch, adapter, chain, seed=2)
         score = score_run(chain, steps)
@@ -341,7 +341,7 @@ def test_parse_failure_paths_do_not_crash():
                 return op.apply(current)
         raise AssertionError
 
-    for arch in ("single", "reflection", "static_team", "corpus_mesh"):
+    for arch in ("single", "reflection", "static_team", "corpus_mesh", "verified_team"):
         adapter = MockAdapter(flaky)
         steps, _ = run_one(arch, adapter, chain, seed=6)
         score = score_run(chain, steps)

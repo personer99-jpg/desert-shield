@@ -95,22 +95,6 @@ Fault injection (CM-E003-FI): the harness corrupts the worker's parsed value
 at known interior steps before verification sees it, in every architecture,
 and scores detection / containment / repair per injected fault.
 
-## CM-E004 — Heterogeneous-verifier experiment (pre-registered, not yet run)
-
-Hypothesis: a verifier from a different model family partially decorrelates
-failure modes and therefore reduces correlated-agreement escapes (worker and
-verifier independently producing the same wrong value — the measured binding
-constraint of CM-E003, ~20-25% of verified-architecture escapes).
-
-Design: two paired arms of the `verified_team` architecture (worker + blind
-verifier + re-verified retries + verifier-favoring escalation), identical
-seeds: (A) verifier = same Claude model as worker; (B) verifier = local
-open-weights model of a different family. Primary endpoint (pre-registered):
-`correlated_agreement_on_wrong` count. Secondary: pooled step-escape rate,
-decay lambda, false-challenge rate, cost per success. Kill criteria are
-written in HANDOFF-CM-E004.md and are binding. Full protocol: see
-HANDOFF-CM-E004.md.
-
 ### Methodology changes made before drawing conclusions (and why)
 
 1. The shipped `real_pilot.py` verifier was shown the proposed answer. That
@@ -127,3 +111,28 @@ HANDOFF-CM-E004.md.
    for current Claude models, which would make every architecture score 100%
    and the experiment uninformative. Replaced with a calibrated harder mix.
 5. `real_pilot.py` itself is kept unmodified for the record.
+
+## CM-E004 — Heterogeneous-verifier experiment (pre-registered, not yet run)
+
+Hypothesis: a verifier from a different model family partially decorrelates
+failure modes and therefore reduces correlated-agreement escapes (worker and
+verifier independently producing the same wrong value — the measured binding
+constraint of CM-E003, 19-24% of verified-architecture escapes).
+
+Design: two paired arms of the `verified_team` architecture (worker + blind
+verifier + re-verified retries + verifier-favoring escalation), identical
+seeds: (A) verifier = same Claude model as worker; (B) verifier = local
+open-weights model of a different family. Primary endpoint (pre-registered):
+`correlated_agreement_escapes.verified_team` in deep_analysis.json (always
+emitted, 0 default). Secondary: pooled step-escape rate, decay lambda,
+`false_challenges` (also emitted directly), cost per success.
+
+Documented design property: the escalation vote pools three verifier-model
+samples against two worker-model samples and breaks ties toward verifier
+values, so the heterogeneous arm deliberately weights arbitration toward the
+local verifier model; kill criterion 2 (net escape rate no better because the
+weaker verifier gives back the gains) exists precisely to catch the failure
+mode this creates.
+
+Kill criteria are written in HANDOFF-CM-E004.md and are binding. Full
+protocol: HANDOFF-CM-E004.md.

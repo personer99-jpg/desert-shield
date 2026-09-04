@@ -55,6 +55,18 @@
       "correlated_agreement_on_wrong": 1
     }
   },
+  "correlated_agreement_escapes": {
+    "corpus_mesh": 2,
+    "reflection": 0,
+    "single": 0,
+    "static_team": 1
+  },
+  "false_challenges": {
+    "corpus_mesh": 1,
+    "reflection": 6,
+    "single": 0,
+    "static_team": 1
+  },
   "mesh_mechanisms": {
     "audits": 3,
     "audit_catches": 0,
@@ -64,13 +76,15 @@
     "arb_majority": 6
   },
   "arbitration_outcomes": {
-    "majority": {
-      "total": 6,
-      "accepted_wrong": 2
-    },
-    "retry_verified": {
-      "total": 24,
-      "accepted_wrong": 1
+    "corpus_mesh": {
+      "majority": {
+        "total": 6,
+        "accepted_wrong": 2
+      },
+      "retry_verified": {
+        "total": 24,
+        "accepted_wrong": 1
+      }
     }
   },
   "paired_mesh_vs_static": {
