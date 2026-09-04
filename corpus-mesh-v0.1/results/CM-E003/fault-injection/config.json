@@ -1,0 +1,24 @@
+{
+  "model": "claude-haiku-4-5-20251001",
+  "horizons": [
+    12
+  ],
+  "runs": 8,
+  "seed_base": 30260904,
+  "op_mix": [
+    "mul3_mod",
+    "mul2_mod",
+    "add_mul",
+    "rev_add"
+  ],
+  "architectures": [
+    "single",
+    "reflection",
+    "static_team",
+    "corpus_mesh"
+  ],
+  "audit_rate": 0.1,
+  "n_faults": 3,
+  "budget_cap_usd": 6.0,
+  "thinking": "disabled (MAX_THINKING_TOKENS=0) for all architectures"
+}

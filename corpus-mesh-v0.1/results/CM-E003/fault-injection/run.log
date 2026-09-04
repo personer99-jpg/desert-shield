@@ -1,0 +1,3 @@
+CM-E003: 32 runs to execute (0 already complete)
+{"run_key": "single-h12-r1", "success": 0, "escaped_errors": 3, "errors_detected": 0, "model_calls": 12, "cost_usd": 0.026313}
+{"run_key": "single-h12-r0", "success": 0, "escaped_errors": 5, "errors_detected": 0, "model_calls": 12, "cost_usd": 0.027855}

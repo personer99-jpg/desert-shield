@@ -1,0 +1,50 @@
+{
+  "corpus_mesh": {
+    "lambda_run_level": 0.063345,
+    "lambda_run_level_ci95": [
+      0.010843,
+      0.147043
+    ],
+    "lambda_step_level": 0.043583,
+    "lambda_step_level_ci95": [
+      0.028779,
+      0.0593
+    ]
+  },
+  "reflection": {
+    "lambda_run_level": 0.079217,
+    "lambda_run_level_ci95": [
+      0.014876,
+      0.358352
+    ],
+    "lambda_step_level": 0.092373,
+    "lambda_step_level_ci95": [
+      0.06977,
+      0.110603
+    ]
+  },
+  "single": {
+    "lambda_run_level": 0.112288,
+    "lambda_run_level_ci95": [
+      0.013267,
+      0.381909
+    ],
+    "lambda_step_level": 0.118519,
+    "lambda_step_level_ci95": [
+      0.093281,
+      0.144581
+    ]
+  },
+  "static_team": {
+    "lambda_run_level": 0.041929,
+    "lambda_run_level_ci95": [
+      0.007593,
+      0.118081
+    ],
+    "lambda_step_level": 0.054394,
+    "lambda_step_level_ci95": [
+      0.033602,
+      0.073398
+    ]
+  }
+}

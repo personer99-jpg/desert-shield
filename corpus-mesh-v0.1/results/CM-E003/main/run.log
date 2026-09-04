@@ -122,3 +122,79 @@ CM-E003: 128 runs to execute (0 already complete)
 {"run_key": "corpus_mesh-h50-r5", "success": 0, "escaped_errors": 1, "errors_detected": 7, "model_calls": 120, "cost_usd": 0.314034}
 {"run_key": "single-h50-r7", "success": 0, "escaped_errors": 7, "errors_detected": 0, "model_calls": 50, "cost_usd": 0.121781}
 {"run_key": "reflection-h50-r6", "success": 0, "escaped_errors": 6, "errors_detected": 3, "model_calls": 100, "cost_usd": 0.261505}
+{"run_key": "static_team-h50-r6", "success": 0, "escaped_errors": 1, "errors_detected": 4, "model_calls": 105, "cost_usd": 0.2676}
+{"run_key": "corpus_mesh-h50-r6", "success": 0, "escaped_errors": 1, "errors_detected": 1, "model_calls": 110, "cost_usd": 0.279964}
+{"run_key": "reflection-h50-r7", "success": 0, "escaped_errors": 3, "errors_detected": 4, "model_calls": 100, "cost_usd": 0.264231}
+{"run_key": "static_team-h50-r7", "success": 0, "escaped_errors": 3, "errors_detected": 3, "model_calls": 105, "cost_usd": 0.272698}
+{"run_key": "corpus_mesh-h50-r7", "success": 0, "escaped_errors": 2, "errors_detected": 5, "model_calls": 124, "cost_usd": 0.32803}
+
+SUMMARY
+{"architecture": "corpus_mesh", "horizon": 5, "runs": 8, "success_rate": 1.0, "success_ci_low": 0.6756, "success_ci_high": 1.0, "step_escape_rate": 0.0, "step_escape_ci_low": 0.0, "step_escape_ci_high": 0.08762, "avg_errors_introduced": 0.25, "avg_errors_detected": 0.25, "avg_errors_recovered": 0.25, "avg_escaped_errors": 0, "avg_model_calls": 11, "avg_input_tokens": 5468.4, "avg_output_tokens": 2100, "avg_cost_usd": 0.02733, "avg_wall_seconds": 59.2, "avg_recovery_latency_s": 7.32, "cost_per_success_usd": 0.02733}
+{"architecture": "corpus_mesh", "horizon": 10, "runs": 8, "success_rate": 0.625, "success_ci_low": 0.3057, "success_ci_high": 0.8632, "step_escape_rate": 0.0375, "step_escape_ci_low": 0.01283, "step_escape_ci_high": 0.10455, "avg_errors_introduced": 1.125, "avg_errors_detected": 1, "avg_errors_recovered": 0.75, "avg_escaped_errors": 0.375, "avg_model_calls": 23.62, "avg_input_tokens": 11756.6, "avg_output_tokens": 4647.8, "avg_cost_usd": 0.05943, "avg_wall_seconds": 127.2, "avg_recovery_latency_s": 7.71, "cost_per_success_usd": 0.09508}
+{"architecture": "corpus_mesh", "horizon": 20, "runs": 8, "success_rate": 0.375, "success_ci_low": 0.1368, "success_ci_high": 0.6943, "step_escape_rate": 0.05, "step_escape_ci_low": 0.02555, "step_escape_ci_high": 0.09555, "avg_errors_introduced": 1.875, "avg_errors_detected": 1.5, "avg_errors_recovered": 0.875, "avg_escaped_errors": 1, "avg_model_calls": 47.12, "avg_input_tokens": 23443.8, "avg_output_tokens": 9612, "avg_cost_usd": 0.12028, "avg_wall_seconds": 255.6, "avg_recovery_latency_s": 7.92, "cost_per_success_usd": 0.32075}
+{"architecture": "corpus_mesh", "horizon": 50, "runs": 8, "success_rate": 0.0, "success_ci_low": 0.0, "success_ci_high": 0.3244, "step_escape_rate": 0.045, "step_escape_ci_low": 0.02865, "step_escape_ci_high": 0.07001, "avg_errors_introduced": 5.25, "avg_errors_detected": 4.875, "avg_errors_recovered": 3.5, "avg_escaped_errors": 2.25, "avg_model_calls": 119.75, "avg_input_tokens": 59543.1, "avg_output_tokens": 25461, "avg_cost_usd": 0.31072, "avg_wall_seconds": 645.0, "avg_recovery_latency_s": 7.6, "cost_per_success_usd": null}
+{"architecture": "reflection", "horizon": 5, "runs": 8, "success_rate": 1.0, "success_ci_low": 0.6756, "success_ci_high": 1.0, "step_escape_rate": 0.0, "step_escape_ci_low": 0.0, "step_escape_ci_high": 0.08762, "avg_errors_introduced": 0.375, "avg_errors_detected": 0.375, "avg_errors_recovered": 0.375, "avg_escaped_errors": 0, "avg_model_calls": 10, "avg_input_tokens": 5245.2, "avg_output_tokens": 1879.9, "avg_cost_usd": 0.02525, "avg_wall_seconds": 53.9, "avg_recovery_latency_s": 0.0, "cost_per_success_usd": 0.02525}
+{"architecture": "reflection", "horizon": 10, "runs": 8, "success_rate": 0.25, "success_ci_low": 0.0715, "success_ci_high": 0.5907, "step_escape_rate": 0.0875, "step_escape_ci_low": 0.04303, "step_escape_ci_high": 0.16977, "avg_errors_introduced": 0.875, "avg_errors_detected": 0.75, "avg_errors_recovered": 0.5, "avg_escaped_errors": 0.875, "avg_model_calls": 20, "avg_input_tokens": 10492.9, "avg_output_tokens": 3964, "avg_cost_usd": 0.05154, "avg_wall_seconds": 107.4, "avg_recovery_latency_s": 0.0, "cost_per_success_usd": 0.20617}
+{"architecture": "reflection", "horizon": 20, "runs": 8, "success_rate": 0.25, "success_ci_low": 0.0715, "success_ci_high": 0.5907, "step_escape_rate": 0.075, "step_escape_ci_low": 0.04342, "step_escape_ci_high": 0.12651, "avg_errors_introduced": 2.125, "avg_errors_detected": 1.375, "avg_errors_recovered": 0.875, "avg_escaped_errors": 1.5, "avg_model_calls": 40, "avg_input_tokens": 20976.9, "avg_output_tokens": 7905.8, "avg_cost_usd": 0.10299, "avg_wall_seconds": 216.2, "avg_recovery_latency_s": 0.0, "cost_per_success_usd": 0.41196}
+{"architecture": "reflection", "horizon": 50, "runs": 8, "success_rate": 0.0, "success_ci_low": 0.0, "success_ci_high": 0.3244, "step_escape_rate": 0.1025, "step_escape_ci_low": 0.07646, "step_escape_ci_high": 0.1361, "avg_errors_introduced": 5.75, "avg_errors_detected": 4.625, "avg_errors_recovered": 2.875, "avg_escaped_errors": 5.125, "avg_model_calls": 100, "avg_input_tokens": 52388.9, "avg_output_tokens": 20693.5, "avg_cost_usd": 0.26206, "avg_wall_seconds": 542.8, "avg_recovery_latency_s": 0.0, "cost_per_success_usd": null}
+{"architecture": "single", "horizon": 5, "runs": 8, "success_rate": 0.75, "success_ci_low": 0.4093, "success_ci_high": 0.9285, "step_escape_rate": 0.05, "step_escape_ci_low": 0.01382, "step_escape_ci_high": 0.16504, "avg_errors_introduced": 0.25, "avg_errors_detected": 0, "avg_errors_recovered": 0, "avg_escaped_errors": 0.25, "avg_model_calls": 5, "avg_input_tokens": 2480.2, "avg_output_tokens": 876.4, "avg_cost_usd": 0.01203, "avg_wall_seconds": 27.1, "avg_recovery_latency_s": 0.0, "cost_per_success_usd": 0.01604}
+{"architecture": "single", "horizon": 10, "runs": 8, "success_rate": 0.25, "success_ci_low": 0.0715, "success_ci_high": 0.5907, "step_escape_rate": 0.125, "step_escape_ci_low": 0.06933, "step_escape_ci_high": 0.21503, "avg_errors_introduced": 1.25, "avg_errors_detected": 0, "avg_errors_recovered": 0, "avg_escaped_errors": 1.25, "avg_model_calls": 10, "avg_input_tokens": 4961.9, "avg_output_tokens": 1756.9, "avg_cost_usd": 0.02408, "avg_wall_seconds": 52.0, "avg_recovery_latency_s": 0.0, "cost_per_success_usd": 0.09632}
+{"architecture": "single", "horizon": 20, "runs": 8, "success_rate": 0.125, "success_ci_low": 0.0224, "success_ci_high": 0.4709, "step_escape_rate": 0.1375, "step_escape_ci_low": 0.09259, "step_escape_ci_high": 0.19941, "avg_errors_introduced": 2.75, "avg_errors_detected": 0, "avg_errors_recovered": 0, "avg_escaped_errors": 2.75, "avg_model_calls": 20, "avg_input_tokens": 9920.4, "avg_output_tokens": 3492.6, "avg_cost_usd": 0.04807, "avg_wall_seconds": 104.3, "avg_recovery_latency_s": 0.0, "cost_per_success_usd": 0.38454}
+{"architecture": "single", "horizon": 50, "runs": 8, "success_rate": 0.0, "success_ci_low": 0.0, "success_ci_high": 0.3244, "step_escape_rate": 0.105, "step_escape_ci_low": 0.07862, "step_escape_ci_high": 0.13889, "avg_errors_introduced": 5.25, "avg_errors_detected": 0, "avg_errors_recovered": 0, "avg_escaped_errors": 5.25, "avg_model_calls": 50, "avg_input_tokens": 24771.1, "avg_output_tokens": 9011.1, "avg_cost_usd": 0.12149, "avg_wall_seconds": 263.3, "avg_recovery_latency_s": 0.0, "cost_per_success_usd": null}
+{"architecture": "static_team", "horizon": 5, "runs": 8, "success_rate": 0.875, "success_ci_low": 0.5291, "success_ci_high": 0.9776, "step_escape_rate": 0.025, "step_escape_ci_low": 0.00443, "step_escape_ci_high": 0.12882, "avg_errors_introduced": 0.375, "avg_errors_detected": 0.25, "avg_errors_recovered": 0.25, "avg_escaped_errors": 0.125, "avg_model_calls": 10.25, "avg_input_tokens": 5099.8, "avg_output_tokens": 1811.4, "avg_cost_usd": 0.02475, "avg_wall_seconds": 54.1, "avg_recovery_latency_s": 3.59, "cost_per_success_usd": 0.02829}
+{"architecture": "static_team", "horizon": 10, "runs": 8, "success_rate": 0.625, "success_ci_low": 0.3057, "success_ci_high": 0.8632, "step_escape_rate": 0.0375, "step_escape_ci_low": 0.01283, "step_escape_ci_high": 0.10455, "avg_errors_introduced": 1.25, "avg_errors_detected": 1.125, "avg_errors_recovered": 0.875, "avg_escaped_errors": 0.375, "avg_model_calls": 21.25, "avg_input_tokens": 10591.2, "avg_output_tokens": 4225.9, "avg_cost_usd": 0.05371, "avg_wall_seconds": 113.8, "avg_recovery_latency_s": 4.13, "cost_per_success_usd": 0.08594}
+{"architecture": "static_team", "horizon": 20, "runs": 8, "success_rate": 0.375, "success_ci_low": 0.1368, "success_ci_high": 0.6943, "step_escape_rate": 0.05, "step_escape_ci_low": 0.02555, "step_escape_ci_high": 0.09555, "avg_errors_introduced": 2.125, "avg_errors_detected": 2.125, "avg_errors_recovered": 1.25, "avg_escaped_errors": 1, "avg_model_calls": 42.62, "avg_input_tokens": 21242.9, "avg_output_tokens": 8413.6, "avg_cost_usd": 0.10742, "avg_wall_seconds": 229.3, "avg_recovery_latency_s": 4.0, "cost_per_success_usd": 0.28645}
+{"architecture": "static_team", "horizon": 50, "runs": 8, "success_rate": 0.125, "success_ci_low": 0.0224, "success_ci_high": 0.4709, "step_escape_rate": 0.06, "step_escape_ci_low": 0.04065, "step_escape_ci_high": 0.08772, "avg_errors_introduced": 5.625, "avg_errors_detected": 5, "avg_errors_recovered": 3, "avg_escaped_errors": 3, "avg_model_calls": 106.38, "avg_input_tokens": 52950.9, "avg_output_tokens": 22003.2, "avg_cost_usd": 0.273, "avg_wall_seconds": 571.7, "avg_recovery_latency_s": 4.11, "cost_per_success_usd": 2.18399}
+
+DECAY
+{
+  "corpus_mesh": {
+    "lambda_run_level": 0.063345,
+    "lambda_run_level_ci95": [
+      0.010843,
+      0.147043
+    ],
+    "lambda_step_level": 0.043583,
+    "lambda_step_level_ci95": [
+      0.028779,
+      0.0593
+    ]
+  },
+  "reflection": {
+    "lambda_run_level": 0.079217,
+    "lambda_run_level_ci95": [
+      0.014876,
+      0.358352
+    ],
+    "lambda_step_level": 0.092373,
+    "lambda_step_level_ci95": [
+      0.06977,
+      0.110603
+    ]
+  },
+  "single": {
+    "lambda_run_level": 0.112288,
+    "lambda_run_level_ci95": [
+      0.013267,
+      0.381909
+    ],
+    "lambda_step_level": 0.118519,
+    "lambda_step_level_ci95": [
+      0.093281,
+      0.144581
+    ]
+  },
+  "static_team": {
+    "lambda_run_level": 0.041929,
+    "lambda_run_level_ci95": [
+      0.007593,
+      0.118081
+    ],
+    "lambda_step_level": 0.054394,
+    "lambda_step_level_ci95": [
+      0.033602,
+      0.073398
+    ]
+  }
+}
+total spent this invocation: $12.99 across 5096 calls
