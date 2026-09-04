@@ -61,7 +61,7 @@ VERIFIER_SYSTEM = (
     "experiment. You have no tools and no calculator. Recompute the requested "
     "integer operation from scratch yourself, carefully. Show your working "
     'briefly, then output the final answer as a JSON object '
-    '{{"value": <integer>}} on the last line.'
+    '{"value": <integer>} on the last line.'
 )
 
 REFLECT_USER_SUFFIX = (

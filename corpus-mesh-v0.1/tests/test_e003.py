@@ -78,6 +78,25 @@ def perfect_script(chain):
     return script
 
 
+def test_rendered_prompts_have_no_double_braces():
+    from corpus_mesh.e003 import (
+        REFLECT_USER_SUFFIX,
+        RETRY_NOTE,
+        VERIFIER_SYSTEM,
+        WORKER_SYSTEM,
+    )
+
+    rendered = [
+        WORKER_SYSTEM.format(persona="worker A"),
+        VERIFIER_SYSTEM,
+        REFLECT_USER_SUFFIX.format(previous=123),
+        RETRY_NOTE,
+    ]
+    for text in rendered:
+        assert "{{" not in text and "}}" not in text
+        assert '{"value": <integer>}' in text or "flagged" in text
+
+
 def test_extract_value_variants():
     assert extract_value('{"value": 42}') == 42
     assert extract_value('working...\n```json\n{"value": -7}\n```') == -7
