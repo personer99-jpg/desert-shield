@@ -46,3 +46,68 @@ python -m corpus_mesh.real_pilot --horizons 10 25 --runs 3
 ```
 
 This pilot validates real-model wiring. It is not a substitute for external long-horizon environments such as OSWorld/Terminal-Bench.
+
+## CM-E003 — Real Claude matched-model experiment (this run)
+
+Implemented in `corpus_mesh/e003.py` + `corpus_mesh/claude_cli.py` +
+`corpus_mesh/e003_tasks.py`. Runs on the authenticated Claude Code CLI in
+headless mode; no separate API key.
+
+Architectures (all served by the same Claude model, same generation settings):
+1. `single` — one worker call per step;
+2. `reflection` — worker call + correlated self-review (model sees its own
+   previous answer, non-blind);
+3. `static_team` — worker + blind independent verifier recompute; disagreement
+   triggers one backup-worker retry which is accepted without re-verification
+   (mirrors the synthetic static team);
+4. `corpus_mesh` — CM-0.1.1: reputation-routed worker choice (updated from
+   verifier agreement only), blind verifier every step, selective blind audit
+   of ~10% of approved steps, challenged steps retried by the alternate worker
+   persona AND re-verified, provenance claims with invalidation, majority
+   arbitration when the retry also fails verification.
+
+Controls:
+- same model for every call, asserted per call from the CLI's served-model
+  report;
+- extended thinking disabled identically for all calls
+  (`MAX_THINKING_TOKENS=0`); tools disabled (`--tools ""`) so no agent can
+  shell out to a calculator;
+- identical worker/verifier prompt text across architectures (personas differ
+  by name only);
+- paired trials: the same task chains (same seeds) are given to every
+  architecture;
+- ground truth is never present in any prompt and never enters the execution
+  path; scoring is post-hoc replay (`score_run`);
+- per-run and cumulative budget cap enforced by the harness.
+
+Task battery: bounded-state deterministic integer ops, difficulty calibrated
+against the target model first (`e003 calibrate`, calibration-only seeds) so
+the per-step worker error rate is measurable. Chosen mix recorded in
+`results/CM-E003/calibration.json` and the run's `config.json`.
+
+Primary metric: R(h) and the reliability-decay rate lambda, estimated two
+ways: the CM-E001 run-level log-linear fit, and a step-level estimator
+`-ln(1 - per-step escape rate)` that uses every step as a Bernoulli trial
+(added because run-level fits are statistically weak at real-model sample
+sizes). Bootstrap 95% CIs on both.
+
+Fault injection (CM-E003-FI): the harness corrupts the worker's parsed value
+at known interior steps before verification sees it, in every architecture,
+and scores detection / containment / repair per injected fault.
+
+### Methodology changes made before drawing conclusions (and why)
+
+1. The shipped `real_pilot.py` verifier was shown the proposed answer. That
+   invites agreement bias and contradicts the blueprint constraint
+   `blind_verification: true`. CM-E003 verifiers recompute blind; the harness
+   compares values.
+2. The shipped `real_pilot.py` updated mesh reputation from benchmark ground
+   truth (`worker_correct`). CM-E003 reputation updates use verifier
+   agreement only. A dedicated no-hidden-oracle test asserts that when worker
+   and verifier share the same wrong value, nothing is "detected".
+3. The reflection baseline was missing from the real pilot; added, since the
+   user-facing comparison requires it.
+4. The original task set (single-digit add/sub/xor) has ~0% per-step error
+   for current Claude models, which would make every architecture score 100%
+   and the experiment uninformative. Replaced with a calibrated harder mix.
+5. `real_pilot.py` itself is kept unmodified for the record.
