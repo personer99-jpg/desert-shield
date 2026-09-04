@@ -1,0 +1,155 @@
+{
+  "version": "CM-0.1",
+  "agents": {
+    "architect": {
+      "agent_id": "architect",
+      "role": "architect",
+      "skills": [
+        "planning"
+      ],
+      "state": "active",
+      "metadata": {}
+    },
+    "worker_a": {
+      "agent_id": "worker_a",
+      "role": "worker",
+      "skills": [
+        "arithmetic"
+      ],
+      "state": "active",
+      "metadata": {}
+    },
+    "worker_b": {
+      "agent_id": "worker_b",
+      "role": "worker",
+      "skills": [
+        "arithmetic"
+      ],
+      "state": "active",
+      "metadata": {}
+    },
+    "verifier": {
+      "agent_id": "verifier",
+      "role": "independent_verifier",
+      "skills": [
+        "verification"
+      ],
+      "state": "active",
+      "metadata": {}
+    },
+    "adversary": {
+      "agent_id": "adversary",
+      "role": "adversary",
+      "skills": [
+        "challenge"
+      ],
+      "state": "active",
+      "metadata": {}
+    }
+  },
+  "links": [
+    {
+      "source": "architect",
+      "destination": "worker_a",
+      "purpose": "task_assignment",
+      "allowed_types": [
+        "claim",
+        "evidence",
+        "task"
+      ],
+      "trust_required": 0.0,
+      "active": true
+    },
+    {
+      "source": "architect",
+      "destination": "worker_b",
+      "purpose": "task_assignment",
+      "allowed_types": [
+        "claim",
+        "evidence",
+        "task"
+      ],
+      "trust_required": 0.0,
+      "active": true
+    },
+    {
+      "source": "worker_a",
+      "destination": "verifier",
+      "purpose": "artifact_verification",
+      "allowed_types": [
+        "claim",
+        "evidence",
+        "task"
+      ],
+      "trust_required": 0.0,
+      "active": true
+    },
+    {
+      "source": "worker_b",
+      "destination": "verifier",
+      "purpose": "artifact_verification",
+      "allowed_types": [
+        "claim",
+        "evidence",
+        "task"
+      ],
+      "trust_required": 0.0,
+      "active": true
+    },
+    {
+      "source": "worker_a",
+      "destination": "adversary",
+      "purpose": "adversarial_review",
+      "allowed_types": [
+        "claim",
+        "evidence",
+        "task"
+      ],
+      "trust_required": 0.0,
+      "active": true
+    },
+    {
+      "source": "worker_b",
+      "destination": "adversary",
+      "purpose": "adversarial_review",
+      "allowed_types": [
+        "claim",
+        "evidence",
+        "task"
+      ],
+      "trust_required": 0.0,
+      "active": true
+    },
+    {
+      "source": "verifier",
+      "destination": "architect",
+      "purpose": "verification_result",
+      "allowed_types": [
+        "claim",
+        "evidence",
+        "task"
+      ],
+      "trust_required": 0.0,
+      "active": true
+    },
+    {
+      "source": "adversary",
+      "destination": "architect",
+      "purpose": "challenge_result",
+      "allowed_types": [
+        "claim",
+        "evidence",
+        "task"
+      ],
+      "trust_required": 0.0,
+      "active": true
+    }
+  ],
+  "constraints": {
+    "max_agents": 12,
+    "self_approval_forbidden": true,
+    "objective_evidence_preferred": true,
+    "blind_verification": true
+  },
+  "parent_version": null
+}

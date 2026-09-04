@@ -1,0 +1,9 @@
+architecture,horizon,runs,success_rate,avg_errors_introduced,avg_errors_detected,avg_errors_recovered,avg_escaped_errors,avg_agent_calls
+corpus_mesh,10,50,1,0.2,0.2,0.2,0,21.56
+corpus_mesh,25,50,1,0.24,0.24,0.24,0,52.84
+reflection,10,50,0.86,0.1,3,2.94,0.14,13
+reflection,25,50,0.76,0.32,6.82,6.68,0.24,31.82
+single,10,50,0.9,0.1,0,0,0.1,10
+single,25,50,0.66,0.42,0,0,0.34,25
+static_team,10,50,1,0.16,0.16,0.16,0,20.26
+static_team,25,50,1,0.22,0.22,0.22,0,50.28
