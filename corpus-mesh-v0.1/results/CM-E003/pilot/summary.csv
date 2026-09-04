@@ -1,0 +1,9 @@
+architecture,horizon,runs,success_rate,success_ci_low,success_ci_high,step_escape_rate,step_escape_ci_low,step_escape_ci_high,avg_errors_introduced,avg_errors_detected,avg_errors_recovered,avg_escaped_errors,avg_model_calls,avg_input_tokens,avg_output_tokens,avg_cost_usd,avg_wall_seconds,avg_recovery_latency_s,cost_per_success_usd
+corpus_mesh,4,2,1.0,0.3424,1.0,0.0,0.0,0.32442,0,0,0,0,8,3969,1486.5,0.01964,48.2,0.0,0.01964
+corpus_mesh,8,2,0.5,0.0945,0.9055,0.0625,0.01112,0.28329,1,1,0.5,0.5,19,9489,3570,0.04703,103.5,7.76,0.09406
+reflection,4,2,1.0,0.3424,1.0,0.0,0.0,0.32442,0.5,0.5,0.5,0,8,4188.5,1633,0.02084,53.1,0.0,0.02084
+reflection,8,2,0.5,0.0945,0.9055,0.0625,0.01112,0.28329,0.5,0.5,0,0.5,16,8417.5,2832,0.0396,96.7,0.0,0.0792
+single,4,2,1.0,0.3424,1.0,0.0,0.0,0.32442,0,0,0,0,4,1980.5,736.5,0.0098,26.4,0.0,0.0098
+single,8,2,0.5,0.0945,0.9055,0.0625,0.01112,0.28329,0.5,0,0,0.5,8,3981,1150.5,0.01801,46.8,0.0,0.03602
+static_team,4,2,1.0,0.3424,1.0,0.0,0.0,0.32442,0,0,0,0,8,3973,1530,0.01986,49.3,0.0,0.01986
+static_team,8,2,1.0,0.3424,1.0,0.0,0.0,0.19361,0.5,0.5,0.5,0,16.5,8246,2839.5,0.03955,93.7,3.87,0.03955
