@@ -7,9 +7,14 @@
 
 ## Verdict
 
-**C. Corpus Mesh provided no meaningful improvement** over the strongest
-simple baseline (a fixed worker + blind independent verifier team) at this
-sample size, while costing ~12% more calls and 2× the recovery latency.
+**C. Corpus Mesh provided no *demonstrated* improvement** over the strongest
+simple baseline (a fixed worker + blind independent verifier team), while
+costing ~12% more calls and 2× the recovery latency. Precision on the wording
+(added in the post-hoc audit, see Errata): the observed effect (a 19%
+relative reduction in per-step escapes) is not distinguishable from zero at
+this sample size — detecting it, if real, would need roughly 10× the data.
+The data rule out a large mesh advantage; they cannot rule out a modest one,
+and they cannot demonstrate any.
 
 Nuance that matters:
 
@@ -92,8 +97,8 @@ does not measurably lower it further.
 | Mechanism | Evidence | Verdict |
 |---|---|---|
 | Blind independent verifier | Detection of worker errors: static 91%, mesh 90% (vs reflection 78%, single 0%) | **The dominant mechanism.** Present in the plain static team too. |
-| Retry re-verification (mesh-only) | Challenge resolutions via verified retry accepted a wrong value 9% of the time (5/53); static's unverified retries produced 29 bad accepts vs mesh's 22 | **The only distinctive mesh mechanism that helped.** Worth ~7 escapes per 680 steps. |
-| Majority arbitration on deadlock (mesh-only) | 32 tie-break arbitrations, 13 accepted wrong (41%); fallback path 4/5 wrong | **Measurably harmful path.** All 22 mesh post-challenge failures came from arbitration/fallback, none from verified retries. |
+| Retry re-verification (mesh-only) | Challenge resolutions via verified retry accepted a wrong value 9% of the time (5/53); static's unverified retries produced 29 bad accepts vs mesh's 22 | **The only distinctive mesh mechanism that helped** — though not immune: its 5 failures were backup and retry-verifier agreeing on the same wrong value (the correlation ceiling again). |
+| Arbitration after a failed retry-verify (mesh-only) | 32 "majority" arbitrations decompose into 20 genuine 2-vs-1-1 pluralities (4 wrong, 20%) and 12 exact 2-2 deadlocks (9 wrong, 75%) — every deadlock was silently tie-broken toward the original worker's value by `Counter.most_common` insertion order; fallback path 4/5 wrong | **The deadlock tie-break is a measurably harmful implementation artifact** (a true 3-of-4 majority is structurally impossible on this path). The genuine plurality rule performed acceptably. Mesh post-challenge failures: 13 deadlock/plurality + 4 fallback + 5 verified-retry = 22. |
 | Selective 10% blind audit | 72 audits → 4 catches | Marginal. Cheap, but ~18 extra calls per caught error. |
 | Reputation routing | 18 primary switches; no detectable effect on outcomes | Inert here (reputation signal = verifier agreement, which is noisy at ~10% verifier-side error). |
 | Provenance dependency invalidation | Structurally inert in a linear chain with same-step detection — nothing downstream exists when a claim is invalidated | Untested by this task shape; no evidence either way. |
@@ -102,7 +107,8 @@ does not measurably lower it further.
 
 7 escapes each (static and mesh — same steps, paired chains) came from the
 worker and the blind verifier independently producing the **same wrong
-value**. That is 24% of static's and 32% of mesh's total escapes. With a
+value**. That is 19% of static's (7/36) and 24% of mesh's (7/29) total
+escapes. With a
 single underlying model, "independent" samples share failure modes; personas
 do not decorrelate weights. The pilot showed the same effect inside the
 mesh's arbitration: both worker personas produced the identical wrong value
@@ -181,6 +187,47 @@ was available at essentially the same price.
 - The pilot and this run share the CLI environment's default sampling
   settings; temperature was not independently controlled (identical for all
   architectures).
+
+## Errata and adversarial audit (2026-09-04, post-publication)
+
+An independent adversarial audit of this report against the raw step logs
+found two factual errors (both corrected in place above) and sharpened three
+conclusions. All audit claims were re-verified directly against
+`steps.jsonl` before applying.
+
+1. **Corrected:** the original mechanism table claimed all 22 mesh
+   post-challenge failures came from arbitration/fallback and "none from
+   verified retries". False: verified retries accepted a wrong value 5 times
+   (13 + 4 + 5 = 22), contradicting the report's own `deep_analysis.json`.
+2. **Corrected:** correlated-agreement escapes are 19% of static's and 24%
+   of mesh's escapes (7/36 and 7/29), not 24%/32% as originally stated.
+3. **Sharpened — arbitration:** a true 3-of-4 majority is structurally
+   impossible on the arbitration path (it is only entered when worker ≠
+   verifier AND retry ≠ retry-verifier, so no value can appear 3 times).
+   The 32 "majority" events split into 20 genuine 2-vs-1-1 pluralities
+   (20% wrong) and 12 exact 2-2 deadlocks (75% wrong), and every deadlock
+   was silently resolved toward the original worker's value by
+   `Counter.most_common` insertion order in `e003.py`. Counterfactual replay
+   with a verifier-favoring tie-break saves a net 4 escapes (z −0.89 →
+   ≈ −1.44) — still not significant. The condemned mechanism is the
+   tie-break artifact, not plurality arbitration itself.
+4. **Sharpened — worker luck:** mesh workers happened to introduce fewer raw
+   errors than static's (68 vs 75) — pure sampling luck, since personas are
+   name-only. Conditioned on a worker error occurring, containment failure
+   was mesh 36.8% (25/68) vs static 42.7% (32/75), z ≈ −0.7. Roughly 40% of
+   the headline escape-rate gap is luck, not architecture.
+5. **Sharpened — power:** at 680 steps/architecture the minimum detectable
+   effect is a ~55% relative reduction in escape rate; the observed effect
+   is ~19%. Demonstrating it, if real, needs roughly 10× the data (~$130 at
+   this task's prices). The verdict wording was adjusted from "no meaningful
+   improvement" to "no demonstrated improvement" accordingly. Also noted:
+   half the steps (add_mul, rev_add) produced zero escapes in the verified
+   arms — inert padding that shrinks effective sample size; a future run
+   should drop them.
+6. **Unchanged:** verdict C stands under every re-analysis attempted
+   (verifier-favoring tie-break replay, paired sign/permutation tests,
+   step-level McNemar on non-diverged steps, main+FI pooling — none reach
+   significance, several weaken the naive z).
 
 ## Recommended next mutation (CM-0.2), from measured evidence only
 
