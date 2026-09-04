@@ -691,7 +691,12 @@ def run_experiment(
         for line in runs_path.read_text().splitlines():
             if not line.strip():
                 continue
-            row = json.loads(line)
+            try:
+                row = json.loads(line)
+            except json.JSONDecodeError:
+                continue  # partial line from an interrupted writer; re-run that job
+            if row["run_key"] in done:
+                continue  # duplicate append from an interrupted writer
             done.add(row["run_key"])
             rows.append(row)
 
@@ -863,7 +868,18 @@ def main() -> None:
     args = p.parse_args()
 
     if args.cmd == "analyze":
-        rows = [json.loads(line) for line in (args.out / "runs.jsonl").read_text().splitlines() if line.strip()]
+        rows, seen = [], set()
+        for line in (args.out / "runs.jsonl").read_text().splitlines():
+            if not line.strip():
+                continue
+            try:
+                row = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            if row["run_key"] in seen:
+                continue
+            seen.add(row["run_key"])
+            rows.append(row)
         write_analysis(args.out, rows)
         return
 
