@@ -59,7 +59,7 @@ def analyze(out_dir: Path) -> dict:
                     tax[arch]["challenged_but_bad_accept"] += 1
                 elif wrong:
                     vvals = [c["value"] for c in s["calls"] if c["role"] == "verifier"]
-                    if arch in ("static_team", "corpus_mesh") and vvals and vvals[0] == s["worker_value"]:
+                    if arch in ("static_team", "corpus_mesh", "verified_team") and vvals and vvals[0] == s["worker_value"]:
                         tax[arch]["correlated_agreement_on_wrong"] += 1
                     else:
                         tax[arch]["unflagged_other"] += 1

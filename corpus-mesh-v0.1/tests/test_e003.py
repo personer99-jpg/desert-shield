@@ -254,6 +254,66 @@ def test_mesh_retry_is_reverified_and_arbitrated():
     assert extras["challenges"] == chain.horizon
 
 
+def test_verified_team_succeeds_with_perfect_model():
+    chain = make_chain(8, 61, MIX)
+    adapter = MockAdapter(perfect_script(chain))
+    steps, _ = run_one("verified_team", adapter, chain, seed=7)
+    score = score_run(chain, steps)
+    assert score["success"] and score["escaped_errors"] == 0
+
+
+def test_verified_team_escalation_outvotes_correlated_workers():
+    # Workers (initial + retry) share the same wrong value; verifiers are
+    # right. Escalation gives verifier values a 3-2 majority -> repaired.
+    chain = make_chain(3, 71, MIX)
+
+    def script(system, user, idx):
+        current = int(user.split("Current value: ")[1].split(".")[0])
+        truth = next(op.apply(current) for op in chain.ops if op.description in user)
+        return truth if "verifier" in system else truth + 3
+
+    adapter = MockAdapter(script)
+    steps, _ = run_one("verified_team", adapter, chain, seed=8)
+    score = score_run(chain, steps)
+    assert score["success"]
+    assert all(s.arbitration == "escalated_vote" for s in steps)
+    assert score["errors_recovered"] == chain.horizon
+
+
+def test_verified_team_deadlock_tie_prefers_verifier_values():
+    # 2-2 deadlock (escalation verifier fails to parse): the tie must break
+    # toward the verifier pair, per the CM-E003 audit finding.
+    chain = make_chain(2, 81, MIX)
+    state = {"verifier_calls": 0}
+
+    def script(system, user, idx):
+        current = int(user.split("Current value: ")[1].split(".")[0])
+        truth = next(op.apply(current) for op in chain.ops if op.description in user)
+        if "verifier" in system:
+            state["verifier_calls"] += 1
+            return None if state["verifier_calls"] % 3 == 0 else truth
+        return truth + 5
+
+    adapter = MockAdapter(script)
+    steps, _ = run_one("verified_team", adapter, chain, seed=9)
+    score = score_run(chain, steps)
+    assert score["success"]
+
+
+def test_heterogeneous_verifier_adapter_routing():
+    chain = make_chain(6, 91, MIX)
+    worker_adapter = MockAdapter(perfect_script(chain))
+    verifier_adapter = MockAdapter(perfect_script(chain))
+    for arch in ("static_team", "verified_team", "corpus_mesh"):
+        worker_adapter.calls.clear()
+        verifier_adapter.calls.clear()
+        steps, _ = run_one(arch, worker_adapter, chain, seed=10, verifier_adapter=verifier_adapter)
+        assert score_run(chain, steps)["success"], arch
+        assert worker_adapter.calls and verifier_adapter.calls, arch
+        assert all("verifier" not in c["system"] for c in worker_adapter.calls), arch
+        assert all("verifier" in c["system"] for c in verifier_adapter.calls), arch
+
+
 def test_budget_meter_raises():
     meter = BudgetMeter(0.01)
     meter.add(0.005)

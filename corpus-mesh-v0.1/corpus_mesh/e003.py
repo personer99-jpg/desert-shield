@@ -47,6 +47,9 @@ from .models import Claim
 from .reputation import ReputationStore
 
 ARCHITECTURES = ("single", "reflection", "static_team", "corpus_mesh")
+# verified_team is the CM-E004 fair baseline (not part of the CM-E003 default
+# set): static team + re-verified retries + verifier-favoring escalation.
+ALL_ARCHITECTURES = ARCHITECTURES + ("verified_team",)
 
 WORKER_SYSTEM = (
     "You are {persona}, a worker agent in a long-horizon reliability "
@@ -264,14 +267,18 @@ def run_reflection(adapter, chain: Chain, rng, budget=None, faults: Optional[Fau
     return steps
 
 
-def run_static_team(adapter, chain: Chain, rng, budget=None, faults: Optional[FaultPlan] = None) -> List[StepRecord]:
+def run_static_team(
+    adapter, chain: Chain, rng, budget=None, faults: Optional[FaultPlan] = None,
+    verifier_adapter=None,
+) -> List[StepRecord]:
     faults = faults or {}
+    va = verifier_adapter or adapter
     steps: List[StepRecord] = []
     current = chain.start
     for i, op in enumerate(chain.ops):
         wlog, raw = _worker(adapter, budget, current, op, "the primary worker")
         v, injected, offset = _inject(raw, i, faults)
-        vlog, u = _verifier(adapter, budget, current, op)
+        vlog, u = _verifier(va, budget, current, op)
         calls = [wlog, vlog]
         challenged = v is None or u is None or u != v
         accepted = v if not challenged else current
@@ -294,11 +301,76 @@ def run_static_team(adapter, chain: Chain, rng, budget=None, faults: Optional[Fa
     return steps
 
 
+def run_verified_team(
+    adapter, chain: Chain, rng, budget=None, faults: Optional[FaultPlan] = None,
+    verifier_adapter=None,
+) -> List[StepRecord]:
+    """CM-E004 fair baseline: worker + blind verifier + RE-VERIFIED retries.
+
+    On a challenge the backup retry is re-verified; if retry and re-verify
+    agree, accept. Otherwise one escalation recompute is spent and the modal
+    value among all computations is accepted, with ties broken toward
+    verifier-computed values (the CM-E003 audit measured worker-favoring
+    tie-breaks at 75% wrong). The verifier may be a DIFFERENT model
+    (verifier_adapter) to test the heterogeneous-verification hypothesis.
+    """
+    faults = faults or {}
+    va = verifier_adapter or adapter
+    steps: List[StepRecord] = []
+    current = chain.start
+    for i, op in enumerate(chain.ops):
+        wlog, raw = _worker(adapter, budget, current, op, "the primary worker")
+        v, injected, offset = _inject(raw, i, faults)
+        vlog, u = _verifier(va, budget, current, op)
+        calls = [wlog, vlog]
+        challenged = v is None or u is None or u != v
+        accepted = v if not challenged else current
+        arbitration: Optional[str] = None
+        recovery_calls = 0
+        recovery_seconds = 0.0
+        if challenged:
+            blog, bv = _worker(adapter, budget, current, op, "the backup worker", retry=True)
+            rvlog, ru = _verifier(va, budget, current, op, persona="retry verifier")
+            calls.extend([blog, rvlog])
+            recovery_calls = 2
+            recovery_seconds = blog.latency_s + rvlog.latency_s
+            if bv is not None and ru is not None and bv == ru:
+                accepted = bv
+                arbitration = "retry_verified"
+            else:
+                elog, ev = _verifier(va, budget, current, op, persona="escalation verifier")
+                calls.append(elog)
+                recovery_calls += 1
+                recovery_seconds += elog.latency_s
+                candidates = [x for x in (v, u, bv, ru, ev) if x is not None]
+                counts = Counter(candidates)
+                if counts:
+                    top = counts.most_common(1)[0][1]
+                    tied = {val for val, c in counts.items() if c == top}
+                    accepted = next(
+                        (cand for cand in (ev, ru, u, bv, v) if cand in tied),
+                        accepted,
+                    )
+                    arbitration = "escalated_vote"
+                else:
+                    arbitration = "no_data"
+        steps.append(StepRecord(
+            index=i, current=current, worker_raw_value=raw, worker_value=v,
+            injected=injected, injected_offset=offset,
+            challenged=challenged, challenge_source="verifier" if challenged else None,
+            audit_used=False, arbitration=arbitration, accepted=accepted,
+            recovery_calls=recovery_calls, recovery_seconds=recovery_seconds, calls=calls,
+        ))
+        current = accepted
+    return steps
+
+
 def run_corpus_mesh(
     adapter, chain: Chain, rng, budget=None, faults: Optional[FaultPlan] = None,
-    audit_rate: float = 0.10,
+    audit_rate: float = 0.10, verifier_adapter=None,
 ) -> Tuple[List[StepRecord], Dict[str, Any]]:
     faults = faults or {}
+    va = verifier_adapter or adapter
     steps: List[StepRecord] = []
     current = chain.start
     reputation = ReputationStore()
@@ -324,7 +396,7 @@ def run_corpus_mesh(
 
         wlog, raw = _worker(adapter, budget, current, op, primary)
         v, injected, offset = _inject(raw, i, faults)
-        vlog, u = _verifier(adapter, budget, current, op)
+        vlog, u = _verifier(va, budget, current, op)
         calls = [wlog, vlog]
         agree = v is not None and u is not None and u == v
 
@@ -335,7 +407,7 @@ def run_corpus_mesh(
         elif rng.random() < audit_rate:
             audit_used = True
             extras["audits"] += 1
-            alog, a = _verifier(adapter, budget, current, op, persona="auditor")
+            alog, a = _verifier(va, budget, current, op, persona="auditor")
             calls.append(alog)
             if a is not None and a != v:
                 challenge_source = "audit"
@@ -359,7 +431,7 @@ def run_corpus_mesh(
             extras["challenges"] += 1
             memory.invalidate(claim.claim_id, f"challenged by {challenge_source}")
             blog, bv = _worker(adapter, budget, current, op, backup, retry=True)
-            rvlog, ru = _verifier(adapter, budget, current, op, persona="retry verifier")
+            rvlog, ru = _verifier(va, budget, current, op, persona="retry verifier")
             calls.extend([blog, rvlog])
             recovery_calls = 2
             recovery_seconds = blog.latency_s + rvlog.latency_s
@@ -448,6 +520,7 @@ def run_one(
     budget=None,
     faults: Optional[FaultPlan] = None,
     audit_rate: float = 0.10,
+    verifier_adapter=None,
 ) -> Tuple[List[StepRecord], Dict[str, Any]]:
     rng = random.Random(seed)
     extras: Dict[str, Any] = {}
@@ -456,9 +529,11 @@ def run_one(
     elif architecture == "reflection":
         steps = run_reflection(adapter, chain, rng, budget, faults)
     elif architecture == "static_team":
-        steps = run_static_team(adapter, chain, rng, budget, faults)
+        steps = run_static_team(adapter, chain, rng, budget, faults, verifier_adapter)
+    elif architecture == "verified_team":
+        steps = run_verified_team(adapter, chain, rng, budget, faults, verifier_adapter)
     elif architecture == "corpus_mesh":
-        steps, extras = run_corpus_mesh(adapter, chain, rng, budget, faults, audit_rate)
+        steps, extras = run_corpus_mesh(adapter, chain, rng, budget, faults, audit_rate, verifier_adapter)
     else:
         raise ValueError(f"unknown architecture: {architecture}")
     return steps, extras
@@ -657,12 +732,15 @@ def run_experiment(
     n_faults: int = 0,
     max_workers: int = 6,
     budget_cap_usd: float = 0.0,
+    verifier_adapter=None,
 ) -> List[Dict[str, Any]]:
     from concurrent.futures import ThreadPoolExecutor, as_completed
 
     out_dir.mkdir(parents=True, exist_ok=True)
     config = {
         "model": getattr(adapter, "model", "?"),
+        "verifier_model": getattr(verifier_adapter, "model", None) if verifier_adapter else None,
+        "verifier_adapter": getattr(verifier_adapter, "name", None) if verifier_adapter else None,
         "horizons": list(horizons),
         "runs": runs,
         "seed_base": seed_base,
@@ -676,7 +754,7 @@ def run_experiment(
     cfg_path = out_dir / "config.json"
     if cfg_path.exists():
         prior = json.loads(cfg_path.read_text())
-        for key in ("model", "seed_base", "op_mix", "audit_rate", "n_faults"):
+        for key in ("model", "verifier_model", "seed_base", "op_mix", "audit_rate", "n_faults"):
             if prior.get(key) != config[key]:
                 raise SystemExit(
                     f"resume mismatch in {cfg_path}: {key} was {prior.get(key)!r}, now {config[key]!r}. "
@@ -721,6 +799,7 @@ def run_experiment(
         steps, extras = run_one(
             arch, adapter, chain, seed=chain_seed + zlib.crc32(arch.encode()) % 100000,
             budget=budget, faults=faults, audit_rate=audit_rate,
+            verifier_adapter=verifier_adapter,
         )
         rr = RunRecord(
             run_key=run_key, architecture=arch, horizon=horizon, run_idx=run_idx,
@@ -896,7 +975,17 @@ def main() -> None:
     r.add_argument("--runs", type=int, default=2)
     r.add_argument("--seed-base", type=int, default=20260904)
     r.add_argument("--op-mix", nargs="+", default=["mul3_mod", "add_mul", "rev_add"])
-    r.add_argument("--architectures", nargs="+", default=list(ARCHITECTURES))
+    r.add_argument("--architectures", nargs="+", default=list(ARCHITECTURES), choices=list(ALL_ARCHITECTURES))
+    r.add_argument(
+        "--verifier-endpoint", default=None,
+        help="OpenAI-compatible URL for a DIFFERENT verifier model (heterogeneous "
+             "verification). Requires CM_MODEL_API_KEY.",
+    )
+    r.add_argument(
+        "--verifier-model", default=None,
+        help="Verifier model name. With --verifier-endpoint, names the endpoint's "
+             "model; without it, runs the verifier on the Claude CLI with this model.",
+    )
     r.add_argument("--audit-rate", type=float, default=0.10)
     r.add_argument("--n-faults", type=int, default=0)
     r.add_argument("--max-workers", type=int, default=6)
@@ -933,6 +1022,14 @@ def main() -> None:
     if args.cmd == "calibrate":
         calibrate(adapter, args.out, args.samples, args.seed, args.ops)
     elif args.cmd == "run":
+        verifier_adapter = None
+        if args.verifier_endpoint:
+            verifier_adapter = OpenAICompatShim(
+                endpoint=args.verifier_endpoint, model=args.verifier_model or args.model,
+            )
+        elif args.verifier_model:
+            from .claude_cli import ClaudeCLIAdapter
+            verifier_adapter = ClaudeCLIAdapter(model=args.verifier_model, claude_bin=args.claude_bin)
         run_experiment(
             adapter,
             out_dir=args.out,
@@ -945,6 +1042,7 @@ def main() -> None:
             n_faults=args.n_faults,
             max_workers=args.max_workers,
             budget_cap_usd=args.budget_cap_usd,
+            verifier_adapter=verifier_adapter,
         )
 
 
