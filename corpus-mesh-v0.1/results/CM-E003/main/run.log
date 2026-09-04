@@ -1,0 +1,9 @@
+CM-E003: 160 runs to execute (0 already complete)
+{"run_key": "single-h5-r1", "success": 1, "escaped_errors": 0, "errors_detected": 0, "model_calls": 5, "cost_usd": 0.011267}
+{"run_key": "single-h5-r0", "success": 1, "escaped_errors": 0, "errors_detected": 0, "model_calls": 5, "cost_usd": 0.012577}
+{"run_key": "reflection-h5-r0", "success": 0, "escaped_errors": 1, "errors_detected": 0, "model_calls": 10, "cost_usd": 0.024096}
+{"run_key": "single-h5-r2", "success": 1, "escaped_errors": 0, "errors_detected": 0, "model_calls": 5, "cost_usd": 0.011013}
+{"run_key": "corpus_mesh-h5-r1", "success": 1, "escaped_errors": 0, "errors_detected": 0, "model_calls": 10, "cost_usd": 0.023629}
+{"run_key": "static_team-h5-r1", "success": 1, "escaped_errors": 0, "errors_detected": 0, "model_calls": 10, "cost_usd": 0.023839}
+{"run_key": "reflection-h5-r1", "success": 1, "escaped_errors": 0, "errors_detected": 0, "model_calls": 10, "cost_usd": 0.024479}
+{"run_key": "static_team-h5-r0", "success": 1, "escaped_errors": 0, "errors_detected": 1, "model_calls": 11, "cost_usd": 0.028725}
