@@ -1,0 +1,132 @@
+=== ARM A (same-model) start 2026-09-04T19:56:02.5951701-07:00 ===
+CM-E003: 24 runs to execute (0 already complete)
+{"run_key": "verified_team-h10-r4", "success": 0, "escaped_errors": 1, "errors_detected": 1, "model_calls": 22, "cost_usd": 0.036371}
+{"run_key": "verified_team-h10-r5", "success": 1, "escaped_errors": 0, "errors_detected": 1, "model_calls": 22, "cost_usd": 0.036641}
+{"run_key": "verified_team-h10-r2", "success": 1, "escaped_errors": 0, "errors_detected": 1, "model_calls": 25, "cost_usd": 0.040853}
+{"run_key": "verified_team-h10-r1", "success": 1, "escaped_errors": 0, "errors_detected": 2, "model_calls": 24, "cost_usd": 0.037391}
+{"run_key": "verified_team-h10-r0", "success": 1, "escaped_errors": 0, "errors_detected": 1, "model_calls": 25, "cost_usd": 0.044976}
+{"run_key": "verified_team-h10-r3", "success": 1, "escaped_errors": 0, "errors_detected": 4, "model_calls": 29, "cost_usd": 0.049952}
+{"run_key": "verified_team-h10-r6", "success": 1, "escaped_errors": 0, "errors_detected": 0, "model_calls": 20, "cost_usd": 0.031591}
+{"run_key": "verified_team-h10-r7", "success": 0, "escaped_errors": 1, "errors_detected": 2, "model_calls": 25, "cost_usd": 0.041543}
+{"run_key": "verified_team-h20-r1", "success": 0, "escaped_errors": 2, "errors_detected": 3, "model_calls": 48, "cost_usd": 0.083984}
+{"run_key": "verified_team-h20-r3", "success": 1, "escaped_errors": 0, "errors_detected": 1, "model_calls": 45, "cost_usd": 0.070371}
+{"run_key": "verified_team-h20-r0", "success": 1, "escaped_errors": 0, "errors_detected": 4, "model_calls": 55, "cost_usd": 0.093746}
+{"run_key": "verified_team-h20-r2", "success": 0, "escaped_errors": 2, "errors_detected": 6, "model_calls": 56, "cost_usd": 0.093551}
+{"run_key": "verified_team-h20-r4", "success": 0, "escaped_errors": 1, "errors_detected": 3, "model_calls": 48, "cost_usd": 0.08425}
+{"run_key": "verified_team-h20-r5", "success": 0, "escaped_errors": 1, "errors_detected": 4, "model_calls": 55, "cost_usd": 0.093769}
+{"run_key": "verified_team-h20-r6", "success": 1, "escaped_errors": 0, "errors_detected": 2, "model_calls": 45, "cost_usd": 0.070155}
+{"run_key": "verified_team-h20-r7", "success": 0, "escaped_errors": 1, "errors_detected": 2, "model_calls": 51, "cost_usd": 0.087749}
+{"run_key": "verified_team-h50-r0", "success": 0, "escaped_errors": 2, "errors_detected": 11, "model_calls": 129, "cost_usd": 0.209286}
+{"run_key": "verified_team-h50-r2", "success": 0, "escaped_errors": 2, "errors_detected": 6, "model_calls": 121, "cost_usd": 0.196583}
+{"run_key": "verified_team-h50-r1", "success": 0, "escaped_errors": 1, "errors_detected": 11, "model_calls": 136, "cost_usd": 0.246069}
+{"run_key": "verified_team-h50-r3", "success": 0, "escaped_errors": 2, "errors_detected": 12, "model_calls": 135, "cost_usd": 0.230921}
+{"run_key": "verified_team-h50-r4", "success": 0, "escaped_errors": 4, "errors_detected": 8, "model_calls": 135, "cost_usd": 0.222442}
+{"run_key": "verified_team-h50-r5", "success": 0, "escaped_errors": 4, "errors_detected": 11, "model_calls": 135, "cost_usd": 0.227075}
+{"run_key": "verified_team-h50-r7", "success": 0, "escaped_errors": 3, "errors_detected": 11, "model_calls": 129, "cost_usd": 0.218754}
+{"run_key": "verified_team-h50-r6", "success": 0, "escaped_errors": 7, "errors_detected": 10, "model_calls": 139, "cost_usd": 0.234518}
+
+SUMMARY
+{"architecture": "verified_team", "horizon": 10, "runs": 8, "success_rate": 0.75, "success_ci_low": 0.4093, "success_ci_high": 0.9285, "step_escape_rate": 0.025, "step_escape_ci_low": 0.00688, "step_escape_ci_high": 0.08665, "avg_errors_introduced": 1.75, "avg_errors_detected": 1.5, "avg_errors_recovered": 1.5, "avg_escaped_errors": 0.25, "avg_model_calls": 24, "avg_input_tokens": 5613.5, "avg_output_tokens": 6860.2, "avg_cost_usd": 0.03991, "avg_wall_seconds": 141.4, "avg_recovery_latency_s": 8.18, "cost_per_success_usd": 0.05322}
+{"architecture": "verified_team", "horizon": 20, "runs": 8, "success_rate": 0.375, "success_ci_low": 0.1368, "success_ci_high": 0.6943, "step_escape_rate": 0.04375, "step_escape_ci_low": 0.02135, "step_escape_ci_high": 0.08754, "avg_errors_introduced": 3.375, "avg_errors_detected": 3.125, "avg_errors_recovered": 2.625, "avg_escaped_errors": 0.875, "avg_model_calls": 50.38, "avg_input_tokens": 11792.5, "avg_output_tokens": 14580.9, "avg_cost_usd": 0.0847, "avg_wall_seconds": 309.6, "avg_recovery_latency_s": 9.26, "cost_per_success_usd": 0.22586}
+{"architecture": "verified_team", "horizon": 50, "runs": 8, "success_rate": 0.0, "success_ci_low": 0.0, "success_ci_high": 0.3244, "step_escape_rate": 0.0625, "step_escape_ci_low": 0.04269, "step_escape_ci_high": 0.09063, "avg_errors_introduced": 11, "avg_errors_detected": 10, "avg_errors_recovered": 8.25, "avg_escaped_errors": 3.125, "avg_model_calls": 132.38, "avg_input_tokens": 31066.6, "avg_output_tokens": 38427.9, "avg_cost_usd": 0.22321, "avg_wall_seconds": 680.9, "avg_recovery_latency_s": 7.98, "cost_per_success_usd": null}
+
+DECAY
+{
+  "verified_team": {
+    "lambda_run_level": 0.069315,
+    "lambda_run_level_ci95": [
+      0.0,
+      0.18563
+    ],
+    "lambda_step_level": 0.054588,
+    "lambda_step_level_ci95": [
+      0.036059,
+      0.073847
+    ]
+  }
+}
+total spent this invocation: $2.78 across 1654 calls
+=== ARM A done 2026-09-04T20:26:42.7014524-07:00 ===
+=== ARM B (heterogeneous) start 2026-09-04T20:26:42.7014524-07:00 ===
+CM-E003: 24 runs to execute (0 already complete)
+{"run_key": "verified_team-h10-r5", "success": 1, "escaped_errors": 0, "errors_detected": 0, "model_calls": 20, "cost_usd": 0.014735}
+{"run_key": "verified_team-h10-r2", "success": 1, "escaped_errors": 0, "errors_detected": 0, "model_calls": 20, "cost_usd": 0.014504}
+{"run_key": "verified_team-h10-r1", "success": 1, "escaped_errors": 0, "errors_detected": 2, "model_calls": 24, "cost_usd": 0.017943}
+{"run_key": "verified_team-h10-r0", "success": 1, "escaped_errors": 0, "errors_detected": 2, "model_calls": 25, "cost_usd": 0.021565}
+FAILED verified_team-h10-r4: RuntimeError('endpoint call failed after 3 attempts: timed out')
+FAILED verified_team-h20-r0: RuntimeError('endpoint call failed after 3 attempts: timed out')
+FAILED verified_team-h10-r7: RuntimeError('endpoint call failed after 3 attempts: timed out')
+{"run_key": "verified_team-h10-r3", "success": 1, "escaped_errors": 0, "errors_detected": 5, "model_calls": 32, "cost_usd": 0.0249}
+{"run_key": "verified_team-h10-r6", "success": 1, "escaped_errors": 0, "errors_detected": 0, "model_calls": 20, "cost_usd": 0.014498}
+FAILED verified_team-h20-r3: RuntimeError('endpoint call failed after 3 attempts: timed out')
+{"run_key": "verified_team-h20-r2", "success": 1, "escaped_errors": 0, "errors_detected": 2, "model_calls": 44, "cost_usd": 0.032903}
+{"run_key": "verified_team-h20-r4", "success": 1, "escaped_errors": 0, "errors_detected": 4, "model_calls": 48, "cost_usd": 0.038716}
+{"run_key": "verified_team-h20-r1", "success": 1, "escaped_errors": 0, "errors_detected": 5, "model_calls": 53, "cost_usd": 0.041728}
+{"run_key": "verified_team-h20-r6", "success": 1, "escaped_errors": 0, "errors_detected": 2, "model_calls": 44, "cost_usd": 0.031971}
+{"run_key": "verified_team-h20-r5", "success": 1, "escaped_errors": 0, "errors_detected": 8, "model_calls": 56, "cost_usd": 0.049038}
+{"run_key": "verified_team-h20-r7", "success": 1, "escaped_errors": 0, "errors_detected": 3, "model_calls": 48, "cost_usd": 0.035111}
+FAILED verified_team-h50-r3: RuntimeError('endpoint call failed after 3 attempts: timed out')
+FAILED verified_team-h50-r5: RuntimeError('endpoint call failed after 3 attempts: timed out')
+FAILED verified_team-h50-r4: RuntimeError('endpoint call failed after 3 attempts: timed out')
+{"run_key": "verified_team-h50-r0", "success": 1, "escaped_errors": 0, "errors_detected": 5, "model_calls": 113, "cost_usd": 0.081485}
+{"run_key": "verified_team-h50-r2", "success": 1, "escaped_errors": 0, "errors_detected": 6, "model_calls": 115, "cost_usd": 0.083373}
+{"run_key": "verified_team-h50-r1", "success": 1, "escaped_errors": 0, "errors_detected": 16, "model_calls": 137, "cost_usd": 0.111929}
+{"run_key": "verified_team-h50-r6", "success": 1, "escaped_errors": 0, "errors_detected": 10, "model_calls": 123, "cost_usd": 0.094465}
+{"run_key": "verified_team-h50-r7", "success": 1, "escaped_errors": 0, "errors_detected": 12, "model_calls": 129, "cost_usd": 0.093847}
+
+SUMMARY
+{"architecture": "verified_team", "horizon": 10, "runs": 6, "success_rate": 1.0, "success_ci_low": 0.6097, "success_ci_high": 1.0, "step_escape_rate": 0.0, "step_escape_ci_low": 0.0, "step_escape_ci_high": 0.06017, "avg_errors_introduced": 1.5, "avg_errors_detected": 1.5, "avg_errors_recovered": 1.5, "avg_escaped_errors": 0, "avg_model_calls": 23.5, "avg_input_tokens": 4430.3, "avg_output_tokens": 26872.3, "avg_cost_usd": 0.01802, "avg_wall_seconds": 1337.9, "avg_recovery_latency_s": 147.63, "cost_per_success_usd": 0.01802}
+{"architecture": "verified_team", "horizon": 20, "runs": 6, "success_rate": 1.0, "success_ci_low": 0.6097, "success_ci_high": 1.0, "step_escape_rate": 0.0, "step_escape_ci_low": 0.0, "step_escape_ci_high": 0.03102, "avg_errors_introduced": 4, "avg_errors_detected": 4, "avg_errors_recovered": 4, "avg_escaped_errors": 0, "avg_model_calls": 48.83, "avg_input_tokens": 9238.2, "avg_output_tokens": 60080.5, "avg_cost_usd": 0.03824, "avg_wall_seconds": 2860.5, "avg_recovery_latency_s": 129.76, "cost_per_success_usd": 0.03824}
+{"architecture": "verified_team", "horizon": 50, "runs": 5, "success_rate": 1.0, "success_ci_low": 0.5655, "success_ci_high": 1.0, "step_escape_rate": 0.0, "step_escape_ci_low": 0.0, "step_escape_ci_high": 0.01513, "avg_errors_introduced": 9.8, "avg_errors_detected": 9.8, "avg_errors_recovered": 9.8, "avg_escaped_errors": 0, "avg_model_calls": 123.4, "avg_input_tokens": 23259.8, "avg_output_tokens": 145159.8, "avg_cost_usd": 0.09302, "avg_wall_seconds": 4977.3, "avg_recovery_latency_s": 114.34, "cost_per_success_usd": 0.09302}
+
+DECAY
+{
+  "verified_team": {
+    "lambda_run_level": 0.0,
+    "lambda_run_level_ci95": [
+      0.0,
+      0.0
+    ],
+    "lambda_step_level": -0.0,
+    "lambda_step_level_ci95": [
+      -0.0,
+      -0.0
+    ]
+  }
+}
+total spent this invocation: $0.90 across 1167 calls
+=== ARM B done 2026-09-04T23:29:35.6332635-07:00 ===
+ALL-DONE
+=== ARM B resume (max-workers 2) start 2026-09-04T23:32:28.6098645-07:00 ===
+CM-E003: 7 runs to execute (17 already complete)
+{"run_key": "verified_team-h10-r7", "success": 1, "escaped_errors": 0, "errors_detected": 0, "model_calls": 20, "cost_usd": 0.01591}
+{"run_key": "verified_team-h10-r4", "success": 1, "escaped_errors": 0, "errors_detected": 1, "model_calls": 22, "cost_usd": 0.017003}
+{"run_key": "verified_team-h20-r0", "success": 1, "escaped_errors": 0, "errors_detected": 2, "model_calls": 45, "cost_usd": 0.031909}
+{"run_key": "verified_team-h20-r3", "success": 1, "escaped_errors": 0, "errors_detected": 3, "model_calls": 48, "cost_usd": 0.035167}
+{"run_key": "verified_team-h50-r4", "success": 1, "escaped_errors": 0, "errors_detected": 10, "model_calls": 121, "cost_usd": 0.09507}
+{"run_key": "verified_team-h50-r3", "success": 1, "escaped_errors": 0, "errors_detected": 15, "model_calls": 135, "cost_usd": 0.110802}
+{"run_key": "verified_team-h50-r5", "success": 1, "escaped_errors": 0, "errors_detected": 9, "model_calls": 121, "cost_usd": 0.091817}
+
+SUMMARY
+{"architecture": "verified_team", "horizon": 10, "runs": 8, "success_rate": 1.0, "success_ci_low": 0.6756, "success_ci_high": 1.0, "step_escape_rate": 0.0, "step_escape_ci_low": 0.0, "step_escape_ci_high": 0.04582, "avg_errors_introduced": 1.25, "avg_errors_detected": 1.25, "avg_errors_recovered": 1.25, "avg_escaped_errors": 0, "avg_model_calls": 22.88, "avg_input_tokens": 4311.9, "avg_output_tokens": 26454.9, "avg_cost_usd": 0.01763, "avg_wall_seconds": 1091.3, "avg_recovery_latency_s": 118.51, "cost_per_success_usd": 0.01763}
+{"architecture": "verified_team", "horizon": 20, "runs": 8, "success_rate": 1.0, "success_ci_low": 0.6756, "success_ci_high": 1.0, "step_escape_rate": 0.0, "step_escape_ci_low": 0.0, "step_escape_ci_high": 0.02345, "avg_errors_introduced": 3.625, "avg_errors_detected": 3.625, "avg_errors_recovered": 3.625, "avg_escaped_errors": 0, "avg_model_calls": 48.25, "avg_input_tokens": 9110.2, "avg_output_tokens": 57691.5, "avg_cost_usd": 0.03707, "avg_wall_seconds": 2328.8, "avg_recovery_latency_s": 109.91, "cost_per_success_usd": 0.03707}
+{"architecture": "verified_team", "horizon": 50, "runs": 8, "success_rate": 1.0, "success_ci_low": 0.6756, "success_ci_high": 1.0, "step_escape_rate": 0.0, "step_escape_ci_low": 0.0, "step_escape_ci_high": 0.00951, "avg_errors_introduced": 10.375, "avg_errors_detected": 10.375, "avg_errors_recovered": 10.375, "avg_escaped_errors": 0, "avg_model_calls": 124.25, "avg_input_tokens": 23450.1, "avg_output_tokens": 149244.4, "avg_cost_usd": 0.09535, "avg_wall_seconds": 3969.5, "avg_recovery_latency_s": 89.98, "cost_per_success_usd": 0.09535}
+
+DECAY
+{
+  "verified_team": {
+    "lambda_run_level": 0.0,
+    "lambda_run_level_ci95": [
+      0.0,
+      0.0
+    ],
+    "lambda_step_level": -0.0,
+    "lambda_step_level_ci95": [
+      -0.0,
+      -0.0
+    ]
+  }
+}
+total spent this invocation: $0.40 across 512 calls
+=== ARM B resume done 2026-09-05T00:59:14.1082512-07:00 ===
+RESUME-DONE

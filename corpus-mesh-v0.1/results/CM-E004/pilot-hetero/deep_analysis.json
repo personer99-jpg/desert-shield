@@ -1,0 +1,34 @@
+{
+  "detection_rate": {
+    "verified_team": {
+      "errors": 3,
+      "challenged": 3,
+      "rate": 1.0
+    }
+  },
+  "recovery_rate": {
+    "verified_team": {
+      "detected": 3,
+      "repaired": 3,
+      "rate": 1.0
+    }
+  },
+  "escape_taxonomy": {},
+  "correlated_agreement_escapes": {
+    "verified_team": 0
+  },
+  "false_challenges": {
+    "verified_team": 0
+  },
+  "mesh_mechanisms": {},
+  "arbitration_outcomes": {
+    "verified_team": {
+      "escalated_vote": {
+        "total": 1
+      },
+      "retry_verified": {
+        "total": 2
+      }
+    }
+  }
+}

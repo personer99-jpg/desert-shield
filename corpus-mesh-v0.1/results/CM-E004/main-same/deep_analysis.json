@@ -1,0 +1,41 @@
+{
+  "detection_rate": {
+    "verified_team": {
+      "errors": 129,
+      "challenged": 117,
+      "rate": 0.907
+    }
+  },
+  "recovery_rate": {
+    "verified_team": {
+      "detected": 117,
+      "repaired": 99,
+      "rate": 0.846
+    }
+  },
+  "escape_taxonomy": {
+    "verified_team": {
+      "correlated_agreement_on_wrong": 12,
+      "challenged_but_bad_accept": 22
+    }
+  },
+  "correlated_agreement_escapes": {
+    "verified_team": 12
+  },
+  "false_challenges": {
+    "verified_team": 36
+  },
+  "mesh_mechanisms": {},
+  "arbitration_outcomes": {
+    "verified_team": {
+      "escalated_vote": {
+        "total": 68,
+        "accepted_wrong": 14
+      },
+      "retry_verified": {
+        "total": 85,
+        "accepted_wrong": 8
+      }
+    }
+  }
+}

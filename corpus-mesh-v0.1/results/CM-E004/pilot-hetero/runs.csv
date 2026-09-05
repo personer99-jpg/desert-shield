@@ -1,0 +1,3 @@
+run_key,architecture,horizon,run_idx,chain_seed,success,errors_introduced,errors_detected,errors_recovered,escaped_errors,parse_failures,model_calls,input_tokens,output_tokens,cache_read_tokens,cost_usd,wall_seconds,challenges,recovery_calls,recovery_seconds,mean_recovery_latency_s,injected_faults,faults_detected,faults_contained,faults_repaired,infra_retries
+verified_team-h6-r0,verified_team,6,0,40266904,1,1,1,1,0,0,15,1178,17196,315829,0.041856,275.01,1,3,64.44,64.44,0,0,0,0,0
+verified_team-h6-r1,verified_team,6,1,40266905,1,2,2,2,0,0,16,1182,17798,361219,0.049878,297.0,2,4,71.11,35.56,0,0,0,0,0

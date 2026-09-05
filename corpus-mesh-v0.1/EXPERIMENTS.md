@@ -112,7 +112,7 @@ and scores detection / containment / repair per injected fault.
    and the experiment uninformative. Replaced with a calibrated harder mix.
 5. `real_pilot.py` itself is kept unmodified for the record.
 
-## CM-E004 — Heterogeneous-verifier experiment (pre-registered, not yet run)
+## CM-E004 — Heterogeneous-verifier experiment (run 2026-09-04/05; see RESULTS-CM-E004.md)
 
 Hypothesis: a verifier from a different model family partially decorrelates
 failure modes and therefore reduces correlated-agreement escapes (worker and

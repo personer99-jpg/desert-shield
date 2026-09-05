@@ -1,0 +1,4 @@
+architecture,horizon,runs,success_rate,success_ci_low,success_ci_high,step_escape_rate,step_escape_ci_low,step_escape_ci_high,avg_errors_introduced,avg_errors_detected,avg_errors_recovered,avg_escaped_errors,avg_model_calls,avg_input_tokens,avg_output_tokens,avg_cost_usd,avg_wall_seconds,avg_recovery_latency_s,cost_per_success_usd
+verified_team,10,8,0.25,0.0715,0.5907,0.15,0.08794,0.24413,2.625,2.125,1.375,1.5,26,106.4,6761,0.21004,328.2,14.96,0.84017
+verified_team,20,8,0.25,0.0715,0.5907,0.1,0.06249,0.15626,4.75,4,2.875,2,53.25,159.8,13626.1,0.35082,577.6,12.5,1.4033
+verified_team,50,1,0.0,0.0,0.7935,0.16,0.08337,0.28514,10,8,2,8,129,387,32028,0.81404,1394.8,13.17,

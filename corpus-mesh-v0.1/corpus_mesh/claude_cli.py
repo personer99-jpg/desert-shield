@@ -98,8 +98,11 @@ class ClaudeCLIAdapter:
         return env
 
     def invoke(self, *, system: str, user: str, metadata: Optional[Dict[str, Any]] = None) -> CallResult:
+        # claude_bin may be multiple whitespace-separated tokens (e.g.
+        # "node C:\...\cli.js" on Windows, where the npm .cmd shim corrupts
+        # multi-line arguments passing through cmd.exe).
         cmd = [
-            self.claude_bin,
+            *self.claude_bin.split(),
             "-p", user,
             "--system-prompt", system,
             "--tools", "",
@@ -116,6 +119,10 @@ class ClaudeCLIAdapter:
                     stdin=subprocess.DEVNULL,
                     capture_output=True,
                     text=True,
+                    # The CLI emits UTF-8; without this, Windows decodes with
+                    # cp1252 and intermittently crashes runs (0x9d etc.).
+                    encoding="utf-8",
+                    errors="replace",
                     timeout=self.timeout_seconds,
                     env=self._env(),
                 )
@@ -146,7 +153,13 @@ class ClaudeCLIAdapter:
                 (v or {}).get("canonicalModel", k) for k, v in model_usage.items()
             }
             expected = self.model.split("-2")[0] if re.search(r"-2\d{7}$", self.model) else self.model
-            if served and expected not in served and expected not in canonical:
+            if (
+                served
+                and expected not in served
+                and expected not in canonical
+                and self.model not in served
+                and self.model not in canonical
+            ):
                 raise RuntimeError(
                     f"model mismatch: requested {self.model}, served {served} (canonical {sorted(canonical)})"
                 )

@@ -1,0 +1,2 @@
+architecture,horizon,runs,success_rate,success_ci_low,success_ci_high,step_escape_rate,step_escape_ci_low,step_escape_ci_high,avg_errors_introduced,avg_errors_detected,avg_errors_recovered,avg_escaped_errors,avg_model_calls,avg_input_tokens,avg_output_tokens,avg_cost_usd,avg_wall_seconds,avg_recovery_latency_s,cost_per_success_usd
+verified_team,6,2,0.5,0.0945,0.9055,0.16667,0.04696,0.44804,2,1.5,1,1,15.5,46.5,3968,0.25321,112.3,9.47,0.50643

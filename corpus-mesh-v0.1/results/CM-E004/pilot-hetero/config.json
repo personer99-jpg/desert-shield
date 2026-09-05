@@ -1,0 +1,21 @@
+{
+  "model": "claude-haiku-4-5-20251001",
+  "verifier_model": "qwen3:30b-a3b",
+  "verifier_adapter": "openai-compatible:qwen3:30b-a3b",
+  "horizons": [
+    6
+  ],
+  "runs": 2,
+  "seed_base": 40260904,
+  "op_mix": [
+    "mul3_mod",
+    "mul2_mod"
+  ],
+  "architectures": [
+    "verified_team"
+  ],
+  "audit_rate": 0.1,
+  "n_faults": 0,
+  "budget_cap_usd": 2.0,
+  "thinking": "disabled (MAX_THINKING_TOKENS=0) for all architectures"
+}

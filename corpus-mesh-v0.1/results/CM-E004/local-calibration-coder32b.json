@@ -1,0 +1,26 @@
+{
+  "model": "qwen2.5-coder:32b",
+  "samples": 10,
+  "ops": {
+    "mul3_mod": {
+      "error_rate": 0.9,
+      "ci95": [
+        0.596,
+        0.982
+      ],
+      "parse_failures": 0,
+      "avg_cost_usd": 0.0,
+      "avg_latency_s": 72.02
+    },
+    "mul2_mod": {
+      "error_rate": 0.4,
+      "ci95": [
+        0.168,
+        0.687
+      ],
+      "parse_failures": 0,
+      "avg_cost_usd": 0.0,
+      "avg_latency_s": 46.81
+    }
+  }
+}

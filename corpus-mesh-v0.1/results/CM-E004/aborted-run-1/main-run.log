@@ -1,0 +1,65 @@
+=== ARM A (same-model) start 2026-09-04T19:01:43.1009033-07:00 ===
+Exception in thread Thread-2367 (_readerthread):
+Traceback (most recent call last):
+  File "C:\Users\perso\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\perso\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\perso\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1615, in _readerthread
+    buffer.append(fh.read())
+                  ~~~~~~~^^
+  File "C:\Users\perso\AppData\Local\Programs\Python\Python313\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'charmap' codec can't decode byte 0x9d in position 592: character maps to <undefined>
+CM-E003: 24 runs to execute (0 already complete)
+{"run_key": "verified_team-h10-r1", "success": 1, "escaped_errors": 0, "errors_detected": 0, "model_calls": 20, "cost_usd": 0.124399}
+{"run_key": "verified_team-h10-r2", "success": 0, "escaped_errors": 1, "errors_detected": 0, "model_calls": 22, "cost_usd": 0.237428}
+{"run_key": "verified_team-h10-r4", "success": 0, "escaped_errors": 2, "errors_detected": 2, "model_calls": 24, "cost_usd": 0.205422}
+{"run_key": "verified_team-h10-r5", "success": 0, "escaped_errors": 1, "errors_detected": 3, "model_calls": 29, "cost_usd": 0.235736}
+{"run_key": "verified_team-h10-r3", "success": 0, "escaped_errors": 2, "errors_detected": 4, "model_calls": 30, "cost_usd": 0.346278}
+{"run_key": "verified_team-h10-r0", "success": 0, "escaped_errors": 4, "errors_detected": 5, "model_calls": 37, "cost_usd": 0.239762}
+{"run_key": "verified_team-h10-r6", "success": 1, "escaped_errors": 0, "errors_detected": 2, "model_calls": 24, "cost_usd": 0.151194}
+{"run_key": "verified_team-h10-r7", "success": 0, "escaped_errors": 2, "errors_detected": 1, "model_calls": 22, "cost_usd": 0.140114}
+{"run_key": "verified_team-h20-r0", "success": 0, "escaped_errors": 3, "errors_detected": 3, "model_calls": 55, "cost_usd": 0.348328}
+{"run_key": "verified_team-h20-r2", "success": 1, "escaped_errors": 0, "errors_detected": 3, "model_calls": 53, "cost_usd": 0.336608}
+{"run_key": "verified_team-h20-r3", "success": 0, "escaped_errors": 3, "errors_detected": 2, "model_calls": 51, "cost_usd": 0.320324}
+{"run_key": "verified_team-h20-r1", "success": 0, "escaped_errors": 2, "errors_detected": 10, "model_calls": 62, "cost_usd": 0.401514}
+{"run_key": "verified_team-h20-r5", "success": 0, "escaped_errors": 4, "errors_detected": 4, "model_calls": 50, "cost_usd": 0.370055}
+{"run_key": "verified_team-h20-r4", "success": 0, "escaped_errors": 1, "errors_detected": 5, "model_calls": 56, "cost_usd": 0.408073}
+{"run_key": "verified_team-h20-r6", "success": 1, "escaped_errors": 0, "errors_detected": 3, "model_calls": 49, "cost_usd": 0.307323}
+{"run_key": "verified_team-h20-r7", "success": 0, "escaped_errors": 3, "errors_detected": 2, "model_calls": 50, "cost_usd": 0.314372}
+FAILED verified_team-h50-r2: TypeError('the JSON object must be str, bytes or bytearray, not NoneType')
+{"run_key": "verified_team-h50-r0", "success": 0, "escaped_errors": 8, "errors_detected": 8, "model_calls": 129, "cost_usd": 0.814042}
+ABORTED verified_team-h50-r3: budget cap 10.00 USD exceeded (10.00 spent)
+ABORTED verified_team-h50-r6: budget cap 10.00 USD exceeded (10.01 spent)
+ABORTED verified_team-h50-r5: budget cap 10.00 USD exceeded (10.01 spent)
+ABORTED verified_team-h50-r7: budget cap 10.00 USD exceeded (10.02 spent)
+ABORTED verified_team-h50-r1: budget cap 10.00 USD exceeded (10.08 spent)
+ABORTED verified_team-h50-r4: budget cap 10.00 USD exceeded (10.08 spent)
+
+SUMMARY
+{"architecture": "verified_team", "horizon": 10, "runs": 8, "success_rate": 0.25, "success_ci_low": 0.0715, "success_ci_high": 0.5907, "step_escape_rate": 0.15, "step_escape_ci_low": 0.08794, "step_escape_ci_high": 0.24413, "avg_errors_introduced": 2.625, "avg_errors_detected": 2.125, "avg_errors_recovered": 1.375, "avg_escaped_errors": 1.5, "avg_model_calls": 26, "avg_input_tokens": 106.4, "avg_output_tokens": 6761, "avg_cost_usd": 0.21004, "avg_wall_seconds": 328.2, "avg_recovery_latency_s": 14.96, "cost_per_success_usd": 0.84017}
+{"architecture": "verified_team", "horizon": 20, "runs": 8, "success_rate": 0.25, "success_ci_low": 0.0715, "success_ci_high": 0.5907, "step_escape_rate": 0.1, "step_escape_ci_low": 0.06249, "step_escape_ci_high": 0.15626, "avg_errors_introduced": 4.75, "avg_errors_detected": 4, "avg_errors_recovered": 2.875, "avg_escaped_errors": 2, "avg_model_calls": 53.25, "avg_input_tokens": 159.8, "avg_output_tokens": 13626.1, "avg_cost_usd": 0.35082, "avg_wall_seconds": 577.6, "avg_recovery_latency_s": 12.5, "cost_per_success_usd": 1.4033}
+{"architecture": "verified_team", "horizon": 50, "runs": 1, "success_rate": 0.0, "success_ci_low": 0.0, "success_ci_high": 0.7935, "step_escape_rate": 0.16, "step_escape_ci_low": 0.08337, "step_escape_ci_high": 0.28514, "avg_errors_introduced": 10, "avg_errors_detected": 8, "avg_errors_recovered": 2, "avg_escaped_errors": 8, "avg_model_calls": 129, "avg_input_tokens": 387, "avg_output_tokens": 32028, "avg_cost_usd": 0.81404, "avg_wall_seconds": 1394.8, "avg_recovery_latency_s": 13.17, "cost_per_success_usd": null}
+
+DECAY
+{
+  "verified_team": {
+    "lambda_run_level": 0.0,
+    "lambda_run_level_ci95": [
+      0.0,
+      0.138629
+    ],
+    "lambda_step_level": 0.132547,
+    "lambda_step_level_ci95": [
+      0.084993,
+      0.176187
+    ]
+  }
+}
+total spent this invocation: $10.08 across 1465 calls
+=== ARM A done 2026-09-04T19:49:46.7923280-07:00 ===
+=== ARM B (heterogeneous) start 2026-09-04T19:49:46.7923280-07:00 ===

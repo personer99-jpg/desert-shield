@@ -1,0 +1,26 @@
+{
+  "model": "qwen3:30b-a3b",
+  "samples": 10,
+  "ops": {
+    "mul3_mod": {
+      "error_rate": 0.0,
+      "ci95": [
+        0.0,
+        0.278
+      ],
+      "parse_failures": 0,
+      "avg_cost_usd": 0.0,
+      "avg_latency_s": 26.32
+    },
+    "mul2_mod": {
+      "error_rate": 0.0,
+      "ci95": [
+        0.0,
+        0.278
+      ],
+      "parse_failures": 0,
+      "avg_cost_usd": 0.0,
+      "avg_latency_s": 14.63
+    }
+  }
+}

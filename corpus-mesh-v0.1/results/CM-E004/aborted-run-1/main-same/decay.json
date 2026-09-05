@@ -1,0 +1,14 @@
+{
+  "verified_team": {
+    "lambda_run_level": 0.0,
+    "lambda_run_level_ci95": [
+      0.0,
+      0.138629
+    ],
+    "lambda_step_level": 0.132547,
+    "lambda_step_level_ci95": [
+      0.084993,
+      0.176187
+    ]
+  }
+}
